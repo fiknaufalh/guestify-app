@@ -32,10 +32,10 @@ type IntroSlideProps = {
 };
 
 export default function IntroSlide({ setShowHomePage }: IntroSlideProps) {
-  const buttonLabel = (label: any) => {
+  const buttonLabel = (label: string) => {
     return (
       <View className="p-3">
-        <Text className="text-lg font-semibold text-purple-dark">{label}</Text>
+        <Text className="text-lg font-semibold text-primary-1">{label}</Text>
       </View>
     );
   };
@@ -51,10 +51,10 @@ export default function IntroSlide({ setShowHomePage }: IntroSlideProps) {
               className={`w-[${SIZES.width - 80}] h-[400]`}
               resizeMode="contain"
             />
-            <Text className="text-2xl text-purple-dark font-bold">
+            <Text className="text-2xl text-secondary-2 font-bold">
               {item.title}
             </Text>
-            <Text className="text-m text-purple-dark text-center pt-2">
+            <Text className="text-m text-gray-500 text-center pt-2">
               {item.description}
             </Text>
           </View>
