@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, TouchableOpacity, Platform } from 'react-native';
 import React from 'react';
+import { useRoute } from '@react-navigation/native';
+import { Link } from 'expo-router';
 
 
 export default function HomeScreen() {
@@ -10,6 +12,11 @@ export default function HomeScreen() {
         style={[Platform.OS === "android" && {elevation: 20}]}>
         <Text className='text-white text-3xl font-bold'>Hello World!</Text>
       </TouchableOpacity>
+
+
+      <Link href="/">
+        <Text>Go to Home</Text>
+      </Link>
 
       <StatusBar style="dark" />
     </View>

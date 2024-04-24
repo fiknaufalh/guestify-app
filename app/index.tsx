@@ -1,27 +1,29 @@
 import React, { useState } from "react";
-import { View, Text, Image, StatusBar } from "react-native";
+import { Link, useRouter } from 'expo-router';
+import { View, Text, Image, StatusBar, Pressable } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
-import { COLORS, SIZES } from './src/constants/theme';
-import Router from './src/router/router';
+import { COLORS, SIZES } from '../constants/theme';
+import { useRoute } from "@react-navigation/native";
+// import Router from './router/router';
 
 const slides = [
   {
     id: 1,
     title: 'Solusi Manajemen Acaramu!',
     description: 'Jelajahi kecanggihan teknologi manajemen tamu yang inovatif dan nikmati pengalaman acara yang mulus bersama Guestify',
-    image: require('./assets/onboard-1.png')
+    image: require('../assets/onboard-1.png')
   },
   {
     id: 2,
     title: 'Solusi Praktis!',
     description: 'Dengan Guestify, nikmati kemudahan mengelola RSVP dan Digital Guest Book. Jadikan setiap acara penuh kenangan!',
-    image: require('./assets/onboard-2.png')
+    image: require('../assets/onboard-2.png')
   },
   {
     id: 3,
     title: 'Solusi Ekonomis!',
     description: 'Berkumpul, merayakan, dan mengelola acara dengan mudah. Guestify hadir untuk memastikan setiap detik acaramu berjalan dengan sempurna',
-    image: require('./assets/onboard-3.png')
+    image: require('../assets/onboard-3.png')
   }
 ]
 
@@ -93,7 +95,7 @@ export default function App() {
         renderSkipButton={() => buttonLabel("Skip")}
         renderDoneButton={() => buttonLabel("Done")}
         onDone={() => {
-          setShowHomePage(true);
+            setShowHomePage(true);
         }}
       />
     )
@@ -101,7 +103,9 @@ export default function App() {
 
   return(
     <View className="flex-1 items-center justify-center">
-      <Text>Home Screen</Text>
+        <Link href="/home">
+            <Text>Home Screen</Text>
+        </Link>
     </View>
   )
 }

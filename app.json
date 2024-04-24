@@ -2,6 +2,7 @@
   "expo": {
     "name": "guestify-app",
     "slug": "guestify-app",
+    "scheme": "guestify-app-scheme",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,7 +26,8 @@
       "package": "com.fiknaufalh.guestify"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "plugins": [
       "expo-router"
