@@ -5,10 +5,14 @@ module.exports = {
         "react-native/react-native": true
     },
     extends: [
-        "eslint:recommended", 
-        "plugin:react/recommended", 
+        "eslint:recommended",
+        "plugin:react/recommended",
         "plugin:react-native/all",
         "prettier",
-        "prettier/react"
+        "prettier/react",
+        "universe/native"
     ],
-}
+    rules: {
+        "react-hooks/exhaustive-deps": "warn"
+    }
+};
