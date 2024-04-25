@@ -31,7 +31,7 @@ type IntroSlideProps = {
   setShowHomePage: (value: boolean) => void;
 };
 
-export default function IntroSlide({ setShowHomePage }: IntroSlideProps) {
+export default function IntroSlider({ setShowHomePage }: IntroSlideProps) {
   const buttonLabel = (label: string) => {
     return (
       <View className="p-3">
@@ -48,7 +48,8 @@ export default function IntroSlide({ setShowHomePage }: IntroSlideProps) {
           <View className="flex-1 items-center p-8 pt-20">
             <Image
               source={item.image}
-              className={`w-[${SIZES.width - 80}] h-[400]`}
+              // className={`w-[${SIZES.width - 80}] h-[400]`}
+              style={{ width: SIZES.width - 80, height: 400 }}
               resizeMode="contain"
             />
             <Text className="text-2xl text-secondary-2 font-bold">

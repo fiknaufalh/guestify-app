@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, StatusBar } from "react-native";
-import { Link } from "expo-router";
+import { Link, Redirect } from "expo-router";
 import { COLORS } from "../constants/theme";
-import IntroSlide from "../components/intro-slider";
+import IntroSlider from "../components/intro-slider";
 
 export default function App() {
   const [showHomePage, setShowHomePage] = useState(false);
@@ -11,14 +11,10 @@ export default function App() {
   StatusBar.setBackgroundColor(COLORS.primary_2);
 
   if (!showHomePage) {
-    return <IntroSlide setShowHomePage={setShowHomePage} />;
+    return <IntroSlider setShowHomePage={setShowHomePage} />;
   }
 
   return (
-    <View className="flex-1 items-center justify-center">
-      <Link href="/home">
-        <Text>Home Screen</Text>
-      </Link>
-    </View>
+    <Redirect href="/home" />
   );
 }
