@@ -3,13 +3,15 @@ import React from "react";
 import Header from "@/components/header";
 import HomeBanner from "@/components/home-banner";
 import FeatureSlider from "@/components/feature-slider";
+import FrequentQnA from "@/components/frequent-qna";
 
 const Home = () => {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>
       <Header />
       <HomeBanner />
       <FeatureSlider />
+      <FrequentQnA />
     </ScrollView>
   );
 };
