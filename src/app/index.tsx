@@ -8,7 +8,7 @@ export default function App() {
   const [showHomePage, setShowHomePage] = useState(false);
 
   StatusBar.setBarStyle("light-content", true);
-  StatusBar.setBackgroundColor(COLORS.purple);
+  StatusBar.setBackgroundColor(COLORS.primary_2);
 
   if (!showHomePage) {
     return <IntroSlide setShowHomePage={setShowHomePage} />;

@@ -61,7 +61,7 @@ export default function IntroSlide({ setShowHomePage }: IntroSlideProps) {
         );
       }}
       activeDotStyle={{
-        backgroundColor: COLORS.purple,
+        backgroundColor: COLORS.primary_2,
         width: 30,
       }}
       showSkipButton
