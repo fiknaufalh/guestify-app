@@ -1,11 +1,16 @@
-import { View, Text } from "react-native";
+import { ScrollView } from "react-native";
 import React from "react";
+import Header from "@/components/header";
+import HomeBanner from "@/components/home-banner";
+import FeatureSlider from "@/components/feature-slider";
 
 const Home = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-red-400">
-      <Text>Home</Text>
-    </View>
+    <ScrollView>
+      <Header />
+      <HomeBanner />
+      <FeatureSlider />
+    </ScrollView>
   );
 };
 
