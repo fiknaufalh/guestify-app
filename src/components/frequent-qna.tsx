@@ -26,7 +26,7 @@ const FrequentQnA = () => {
   return (
     <View className="mx-[20px] my-2">
       <Text className="text-primary-2 text-2xl font-bold my-2">Pertanyaan</Text>
-      <View className="w-80">
+      <View className="w-full">
         {QnA.map((item, index) => (
           <View
             key={index}
