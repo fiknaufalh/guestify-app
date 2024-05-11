@@ -1,11 +1,28 @@
-import { View, Text } from "react-native";
 import React from "react";
+import { createStackNavigator } from '@react-navigation/stack';
+import FormKetikManual from "@/components/formketikscan";
+import ScannerCamera from "@/components/scannercam";
+
+const Stack = createStackNavigator();
 
 const Scanner = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-green-400">
-      <Text>Scanner</Text>
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Scanner"
+        component={ScannerCamera}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="FormKetikManual"
+        component={FormKetikManual}
+        options={{
+          headerShown: false,
+          headerLeft: () => null
+        }}
+      />
+    </Stack.Navigator>
+
   );
 };
 
