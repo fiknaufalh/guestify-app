@@ -6,8 +6,8 @@ const appIcon = require('../../assets/icon.png');
 
 const Profile = () => {
   return (
-    <View className='pt-5 bg-white'>
-      <View className="bg-primary-2 justify-center items-center" style={{ borderBottomRightRadius: 30, borderBottomLeftRadius: 30 }}>
+    <View className='bg-white h-full'>
+      <View className="pt-8 bg-primary-2 justify-center items-center" style={{ borderBottomRightRadius: 30, borderBottomLeftRadius: 30 }}>
         <Image source={appIcon} className="w-40 h-24" />
       </View>
       <View className="p-5 items-center">
