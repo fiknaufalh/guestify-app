@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Button, Image, TouchableOpacity } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import { Camera } from 'expo-camera';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -12,11 +12,9 @@ const ScannerCamera = () => {
     const [text, setText] = useState('Not yet scanned');
     const navigation = useNavigation();
 
-    const askForCameraPermission = () => {
-        (async () => {
-            const { status } = await BarCodeScanner.requestPermissionsAsync();
-            setHasPermission(status === 'granted');
-        })()
+    const askForCameraPermission = async () => {
+        const { status } = await Camera.requestCameraPermissionsAsync();
+        setHasPermission(status === 'granted');
     }
 
     // Request Camera Permission
@@ -27,8 +25,8 @@ const ScannerCamera = () => {
     // What happens when we scan the bar code
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        setText(data)
-        console.log('Type: ' + type + '\nData: ' + data)
+        setText(data);
+        console.log('Type: ' + type + '\nData: ' + data);
     };
 
     // Handle manual button press
@@ -43,7 +41,7 @@ const ScannerCamera = () => {
             <View className="flex-1 items-center justify-center">
                 <Text>Requesting for camera permission</Text>
             </View>
-        )
+        );
     }
     if (hasPermission === false) {
         return (
@@ -51,7 +49,7 @@ const ScannerCamera = () => {
                 <Text className="m-2">No access to camera</Text>
                 <Button title={'Allow Camera'} onPress={() => askForCameraPermission()} />
             </View>
-        )
+        );
     }
 
     // Return the View
@@ -66,12 +64,12 @@ const ScannerCamera = () => {
 
             {/* Scanner Barcode */}
             <View className="flex-1 items-center justify-center" style={{ marginTop: -100 }}>
-                <View className="overflow-hidden rounded-3xl" style={{ height: 400, width: 200 }}>
-                    <BarCodeScanner
+                <View className="overflow-hidden rounded-3xl" style={{ height: 400, width: 300 }}>
+                    <Camera
                         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                        style={{ flex: 1 }} />
+                        style={{ flex: 1 }}
+                    ></Camera>
                 </View>
-
 
                 {/* Text result */}
                 <Text className="text-lg mt-5">{text}</Text>
