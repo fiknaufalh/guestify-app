@@ -14,8 +14,9 @@ const FormKetikManual = () => {
             // Alert jika teks kosong
             Alert.alert('Peringatan', 'Mohon masukkan kode undangan terlebih dahulu.');
         } else {
-            // Alert menampilkan teks yang dimasukkan
-            Alert.alert('Teks yang Dimasukkan', textInputValue);
+            // // Alert menampilkan teks yang dimasukkan
+            // Alert.alert('Teks yang Dimasukkan', textInputValue);             //logic cek kode manual nanti disini
+            navigation.navigate('FormCheckIn', { screen: 'FormCheckIn' });
         }
     }
 
@@ -49,9 +50,9 @@ const FormKetikManual = () => {
                         value={textInputValue}
                     />
                 </View>
-                <View className="mt-5">
+                <View className="mt-5 justify-center items-center">
                     <TouchableOpacity onPress={handleLanjutkanPress}>
-                        <View className="bg-secondary-2 py-4 px-40 rounded-full w-full flex-row items-center">
+                        <View className="bg-secondary-2 py-4 px-40 rounded-full w-11/12 flex-row items-center">
                             <Text className="text-white font-semibold mr-2">Lanjutkan</Text>
                             <MaterialIcons name="arrow-right" size={20} color="white" />
                         </View>
@@ -60,7 +61,7 @@ const FormKetikManual = () => {
             </View>
             <View className='justify-center items-center'>
                 <TouchableOpacity onPress={handleBarcodePress}>
-                    <View className="mt-10 bg-secondary-2 py-4 px-5 rounded-full flex-row justify-center items-center" style={{ width: 300 }}>
+                    <View className="mt-8 bg-secondary-2 py-4 px-5 rounded-full flex-row justify-center items-center" style={{ width: 300 }}>
                         <Text className="text-white font-semibold mr-2">Kembali ke QR Code</Text>
                         <MaterialIcons name="qr-code" size={20} color="white" />
                     </View>

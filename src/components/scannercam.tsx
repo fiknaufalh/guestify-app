@@ -12,6 +12,7 @@ const ScannerCamera = () => {
     const [text, setText] = useState('Not yet scanned');
     const navigation = useNavigation();
 
+    // console.log(scanned, text, hasPermission);
     const askForCameraPermission = async () => {
         const { status } = await Camera.requestCameraPermissionsAsync();
         setHasPermission(status === 'granted');
@@ -72,7 +73,7 @@ const ScannerCamera = () => {
                 </View>
 
                 {/* Text result */}
-                <Text className="text-lg mt-5">{text}</Text>
+                {/* <Text className="text-lg mt-5">{text}</Text> */}
 
                 {scanned && <Button title={'Scan Ulang?'} onPress={() => setScanned(false)} color='#601C0E' />}
 
