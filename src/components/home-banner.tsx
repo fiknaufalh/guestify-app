@@ -1,9 +1,17 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native"; // Import useNavigation hook
 import { COLORS } from "@/constants/theme";
 
 const HomeBanner = () => {
+  const navigation = useNavigation(); // Initialize navigation
+
+  const handleDaftarQRPress = () => {
+    // Navigate to DaftarQR screen when "Daftar QR Code" button is pressed
+    navigation.navigate('DaftarQR');
+  };
+
   return (
     <View className="bg-primary-2 w-screen flex-1 items-center pb-8 rounded-b-3xl">
       <Image
@@ -25,6 +33,7 @@ const HomeBanner = () => {
           mode="contained"
           buttonColor={COLORS.secondary_2}
           className="w-44 mr-4"
+          onPress={handleDaftarQRPress} // Call handleDaftarQRPress when button is pressed
         >
           Daftar QR Code
         </Button>
