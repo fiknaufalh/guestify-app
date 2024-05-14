@@ -18,26 +18,17 @@ const Scanner = () => {
       <Stack.Screen
         name="FormKetikManual"
         component={FormKetikManual}
-        options={{
-          headerShown: false,
-          headerLeft: () => null
-        }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="FormCheckIn"
         component={FormCheckIn}
-        options={{
-          headerShown: false,
-          headerLeft: () => null
-        }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="ScannerLast"
         component={ScannerLast}
-        options={{
-          headerShown: false,
-          headerLeft: () => null
-        }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
 
