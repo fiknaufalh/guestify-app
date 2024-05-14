@@ -6,6 +6,7 @@ import QRCode from "@/components/qrcode";
 import CreateEvent from "@/components/createevent";
 import Payment from "@/components/payment";
 import PaymentCompleted from "@/components/paymentcompleted";
+import EditEvent from "@/components/editevent";
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,11 @@ const Home = () => {
       <Stack.Screen
         name="PaymentCompleted"
         component={PaymentCompleted}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="EditEvent"
+        component={EditEvent}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
