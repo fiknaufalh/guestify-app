@@ -12,6 +12,10 @@ const HomeBanner = () => {
     navigation.navigate('DaftarQR');
   };
 
+  const handleCreateEventPress = () => {
+    // Navigate to CreateEvent screen when "Buat Acara" button is pressed
+    navigation.navigate('CreateEvent');
+  };
   return (
     <View className="bg-primary-2 w-screen flex-1 items-center pb-8 rounded-b-3xl">
       <Image
@@ -33,7 +37,7 @@ const HomeBanner = () => {
           mode="contained"
           buttonColor={COLORS.secondary_2}
           className="w-44 mr-4"
-          onPress={handleDaftarQRPress} // Call handleDaftarQRPress when button is pressed
+          onPress={handleDaftarQRPress}
         >
           Daftar QR Code
         </Button>
@@ -41,6 +45,7 @@ const HomeBanner = () => {
           mode="contained"
           buttonColor={COLORS.secondary_2}
           className="w-44"
+          onPress={handleCreateEventPress}
         >
           Buat Acara
         </Button>
