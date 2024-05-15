@@ -40,7 +40,7 @@ export default function FormCheckIn() {
     // Selesai navigation
     const navigation = useNavigation();
     const selesaiPress = () => {
-        navigation.navigate('ScannerLast', { screen: 'ScannerLast' });
+        navigation.navigate('ScannerLast');
     }
 
     return (

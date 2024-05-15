@@ -37,7 +37,7 @@ export default function CreateEvent() {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length > 0) {
-            Alert.alert("Error", "Semua field wajib diisi");
+            Alert.alert("Peringatan", "Semua field wajib diisi");
             return;
         }
 

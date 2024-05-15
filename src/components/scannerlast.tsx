@@ -11,7 +11,7 @@ export default function ScannerLast() {
 
     const handleBarcodePress = () => {
         console.log('Barcode pressed');
-        navigation.navigate('Scanner', { screen: 'Scanner' });
+        navigation.navigate('Scanner');
     }
     return (
         <View className='bg-white h-full'>

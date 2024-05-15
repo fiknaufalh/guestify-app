@@ -33,7 +33,7 @@ const ScannerCamera = () => {
     // Handle manual button press
     const handleManualTypingPress = () => {
         console.log('Manual typing pressed');
-        navigation.navigate('FormKetikManual', { screen: 'FormKetikManual' });
+        navigation.navigate('FormKetikManual');
     }
 
     // Check permissions and return the screens

@@ -16,7 +16,7 @@ const FormKetikManual = () => {
         } else {
             // // Alert menampilkan teks yang dimasukkan
             // Alert.alert('Teks yang Dimasukkan', textInputValue);             //logic cek kode manual nanti disini
-            navigation.navigate('FormCheckIn', { screen: 'FormCheckIn' });
+            navigation.navigate('FormCheckIn');
         }
     }
 
@@ -26,7 +26,7 @@ const FormKetikManual = () => {
 
     const handleBarcodePress = () => {
         console.log('Barcode pressed');
-        navigation.navigate('Scanner', { screen: 'Scanner' });
+        navigation.navigate('Scanner');
     }
 
     return (

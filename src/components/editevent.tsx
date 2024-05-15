@@ -17,7 +17,7 @@ export default function EditEvent() {
 
     const handleLanjutkanPress = () => {
         Alert.alert('Edit Acara Berhasil', '', [
-            { text: 'OK', onPress: () => navigation.navigate('HomeScreen') }
+            { text: 'OK', onPress: () => navigation.navigate('DaftarQR') }
         ]);
     };
 

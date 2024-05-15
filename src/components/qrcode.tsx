@@ -9,7 +9,7 @@ export default function QRCode() {
 
     const handleDaftarQRPress = () => {
         console.log('Barcode pressed');
-        navigation.navigate('DaftarQR', { screen: 'DaftarQR' });
+        navigation.navigate('DaftarQR');
     }
     return (
         <View className='bg-white h-full'>
