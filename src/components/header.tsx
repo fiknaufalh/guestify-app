@@ -1,4 +1,4 @@
-import { View, Text, Image, Platform } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import { COLORS } from "@/constants/theme";
@@ -23,8 +23,8 @@ const Header = () => {
           />
         </View>
       </View>
-      <Text className="text-white text-xl" style={{ marginStart: 20 }}>
-        Halo, Bob!
+      <Text className="text-white font-semibold text-xl" style={{ marginStart: 20 }}>
+        👋 Halo, Bob!
       </Text>
     </View>
   );
