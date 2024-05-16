@@ -14,12 +14,12 @@ export default function RSVPHadir() {
     return (
         <View className='bg-white h-full'>
             <View className='justify-center items-center'>
-                <Text className='text-primary-2 font-bold text-3xl mx-20 mb-10' style={{ textAlign: 'center', marginTop: 80 }}>Selamat, Kamu Berhasil Mengisi RSVP</Text>
-                <Image source={checked} className='mt-10 mb-5' />
-                <Text className='text-black font-semibold text-lg mx-5 mb-10' style={{ textAlign: 'center' }}>Sampai jumpa di acara kami! Jangan lupa scan QR Code untuk Check-In saat acara!</Text>
+                <Text className='text-primary-2 font-jos_bold text-3xl mx-20 mb-5' style={{ textAlign: 'center', marginTop: 80 }}>Selamat, Kamu Berhasil Mengisi RSVP</Text>
+                <Image source={checked} className='mb-5' />
+                <Text className='text-black font-nun_semibold text-lg mx-5 mb-5' style={{ textAlign: 'center' }}>Sampai jumpa di acara kami! Jangan lupa scan QR Code untuk Check-In saat acara!</Text>
                 <TouchableOpacity onPress={handleBerandaPress}>
                     <View className="bg-secondary-2 py-4 px-5 rounded-full flex-row justify-center items-center" style={{ width: 300 }}>
-                        <Text className="text-white font-semibold mr-2">Selesai</Text>
+                        <Text className="text-white font-nun_semibold mr-2">Selesai</Text>
                     </View>
                 </TouchableOpacity>
             </View>

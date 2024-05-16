@@ -26,10 +26,10 @@ export default function EventScreen() {
     return (
         <View className="bg-white h-full">
             <View className="pt-8 bg-primary-2 items-center p-3" style={{ borderBottomRightRadius: 30, borderBottomLeftRadius: 30 }}>
-                <Text className="text-white text-xl font-semibold self-start mx-4 mt-10">
+                <Text className="text-white text-xl font-nun_semibold self-start mx-4 mt-10">
                     👋 Halo, Bob!
                 </Text>
-                <Text className="text-white text-md self-start mx-4 mt-5">
+                <Text className="text-white text-md font-nun_light self-start mx-4 mt-5">
                     Ada undangan ke acara mana nih...
                 </Text>
                 <Image
@@ -43,7 +43,7 @@ export default function EventScreen() {
             </View>
             {/* Form */}
             <View className="p-5">
-                <Text className="text-primary-2 text-md font-semibold my-5 mb-2">Kode Undangan:</Text>
+                <Text className="text-primary-2 text-md font-nun_bold my-5 mb-2">Kode Undangan:</Text>
                 <TextInput
                     placeholder="Masukkan Kode Undangan..."
                     textAlign="left"
@@ -51,12 +51,13 @@ export default function EventScreen() {
                     placeholderTextColor="gray"
                     onChangeText={handleTextInputChange} // Handle text input change
                     value={textInputValue}
+                    className='font-nun_light'
                 />
             </View>
             <View className="mt-5 justify-center items-center">
                 <TouchableOpacity onPress={handleLanjutkanPress}>
-                    <View className="bg-secondary-2 py-4 px-20 rounded-full w-11/12 flex-row items-center">
-                        <Text className="text-white font-semibold mr-2">Lanjutkan</Text>
+                    <View className="bg-secondary-2 py-4 px-32 rounded-full w-11/12 flex-row items-center">
+                        <Text className="text-white font-nun_semibold mr-2">Lanjutkan</Text>
                         <MaterialIcons name="arrow-right" size={20} color="white" />
                     </View>
                 </TouchableOpacity>

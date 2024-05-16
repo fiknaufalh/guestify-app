@@ -53,10 +53,10 @@ export default function RSVPScreen() {
         <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>
             <View className="bg-white h-full">
                 <View className="pt-8 bg-primary-2 items-center p-3" style={{ borderBottomRightRadius: 30, borderBottomLeftRadius: 30 }}>
-                    <Text className="text-white text-3xl font-bold mx-4" style={{ marginTop: 50 }}>
+                    <Text className="text-white text-3xl font-jos_bold mx-4" style={{ marginTop: 50 }}>
                         Pernikahan
                     </Text>
-                    <Text className="text-secondary-2 text-xl font-semibold mx-4 mt-5">
+                    <Text className="text-secondary-2 text-lg font-nun_semibold mx-4 mt-5">
                         Michael & Putri
                     </Text>
                     <Image
@@ -69,7 +69,7 @@ export default function RSVPScreen() {
                     />
                 </View>
                 <View className="items-center bg-white h-full">
-                    <Text className="text-primary-2 text-3xl font-bold mx-4" style={{ marginTop: 50 }}>
+                    <Text className="text-primary-2 text-3xl font-jos_bold mx-4" style={{ marginTop: 50 }}>
                         Daftar Acara
                     </Text>
                     <View className="flex-row justify-around mt-10 w-full px-4">
@@ -77,7 +77,7 @@ export default function RSVPScreen() {
                             <Image
                                 source={require("@/assets/pemberkatan.png")}
                             />
-                            <Text className="text-white text-md mt-4">
+                            <Text className="text-white text-md font-nun_light mt-4" style={{ textAlign: 'center' }}>
                                 Pemberkatan Nikah
                             </Text>
                         </View>
@@ -85,78 +85,78 @@ export default function RSVPScreen() {
                             <Image
                                 source={require("@/assets/resepsi.png")}
                             />
-                            <Text className="text-white text-md mt-4">
-                                Resepsi Acara
+                            <Text className="text-white text-md font-nun_light mt-4" style={{ textAlign: 'center' }}>
+                                Resepsi Pernikahan
                             </Text>
                         </View>
                     </View>
-                    <Text className="text-primary-2 text-3xl font-bold mx-4" style={{ marginTop: 40 }}>
+                    <Text className="text-primary-2 text-3xl font-jos_bold mx-4" style={{ marginTop: 40 }}>
                         Sampai Ketemu!
                     </Text>
-                    <Text className="text-secondary-2 text-xl font-semibold mx-4 mt-5">
+                    <Text className="text-secondary-2 text-lg font-nun_bold mx-4 mt-5" style={{ textAlign: 'center' }}>
                         Mohon Isi RSVP Kedatangan Kamu
                     </Text>
 
                     <View className="w-full px-4 mt-5">
-                        <Text className="text-primary-2 text-xl font-semibold mb-2">Nama Lengkap:</Text>
+                        <Text className="text-primary-2 text-lg font-nun_semibold mb-2">Nama Lengkap:</Text>
                         <TextInput
-                            className="bg-gray-200 px-4 py-3 rounded-xl text-xl mb-4"
+                            className="bg-gray-200 px-4 py-3 rounded-xl text-lg mb-4 font-nun_light"
                             placeholder="Masukkan Nama Lengkap Kamu"
                             value={fullName}
                             onChangeText={setFullName}
                         />
-                        {errors.fullName && <Text style={{ color: 'red' }}>{errors.fullName}</Text>}
+                        {errors.fullName && <Text style={{ color: 'red' }} className='font-nun_light'>{errors.fullName}</Text>}
 
-                        <Text className="text-primary-2 text-xl font-semibold mt-4 mb-2">Nomor Telepon:</Text>
+                        <Text className="text-primary-2 text-lg font-nun_semibold mt-4 mb-2">Nomor Telepon:</Text>
                         <TextInput
-                            className="bg-gray-200 px-4 py-3 rounded-xl text-xl mb-4"
+                            className="bg-gray-200 px-4 py-3 rounded-xl text-lg mb-4 font-nun_light"
                             placeholder="Masukkan Nomor Telepon Kamu"
                             value={phone}
                             onChangeText={setPhone}
                             keyboardType="phone-pad"
                         />
-                        {errors.phone && <Text style={{ color: 'red' }}>{errors.phone}</Text>}
+                        {errors.phone && <Text style={{ color: 'red' }} className='font-nun_light'>{errors.phone}</Text>}
 
-                        <Text className="text-primary-2 text-xl font-semibold mt-4 mb-2">Konfirmasi Kehadiran:</Text>
-                        <View className="flex-row justify-around mb-4">
+                        <Text className="text-primary-2 text-lg font-nun_semibold mt-4 mb-2">Konfirmasi Kehadiran:</Text>
+                        <View className="flex-row justify-around mb-4 font-nun_light">
                             <TouchableOpacity
                                 className={`w-40 p-4 rounded-full ${attendance === 'Hadir' ? 'bg-secondary-2' : 'bg-gray-400'}`}
                                 onPress={() => handleAttendancePress('Hadir')}
                             >
-                                <Text className="text-white font-semibold text-center">Sampai Ketemu</Text>
+                                <Text className="text-white font-nun_semibold text-center">Sampai Ketemu</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 className={`w-40 p-4 rounded-full ${attendance === 'Tidak Hadir' ? 'bg-secondary-2' : 'bg-gray-400'}`}
                                 onPress={() => handleAttendancePress('Tidak Hadir')}
                             >
-                                <Text className="text-white font-semibold text-center">Tidak Hadir</Text>
+                                <Text className="text-white font-nun_semibold text-center">Tidak Hadir</Text>
                             </TouchableOpacity>
                         </View>
-                        {errors.attendance && <Text style={{ color: 'red' }}>{errors.attendance}</Text>}
+                        {errors.attendance && <Text style={{ color: 'red' }} className='font-nun_light'>{errors.attendance}</Text>}
 
-                        <Text className="text-primary-2 text-xl font-semibold mb-2">Total Tamu:</Text>
+                        <Text className="text-primary-2 text-lg font-nun_semibold mb-2">Total Tamu:</Text>
                         <TextInput
-                            className="bg-gray-200 px-4 py-3 rounded-xl text-xl mb-4"
+                            className="bg-gray-200 px-4 py-3 rounded-xl text-lg mb-4 font-nun_light"
                             placeholder="Total Tamu yang Akan Hadir"
                             value={guestCount}
                             onChangeText={setGuestCount}
                             keyboardType="numeric"
                         />
-                        {errors.guestCount && <Text style={{ color: 'red' }}>{errors.guestCount}</Text>}
+                        {errors.guestCount && <Text style={{ color: 'red' }} className='font-nun_light'>{errors.guestCount}</Text>}
 
-                        <Text className="text-primary-2 text-xl font-semibold mt-4 mb-2">Harapan Kamu:</Text>
+                        <Text className="text-primary-2 text-lg font-nun_semibold mt-4 mb-2">Harapan Kamu:</Text>
                         <TextInput
-                            className="bg-gray-200 px-4 py-3 rounded-xl text-xl mb-4 h-32 text-top"
+                            className="bg-gray-200 px-4 py-3 rounded-xl text-lg mb-4 h-32 text-top"
                             placeholder="Tuliskan Harapan Kamu Disini"
                             value={message}
                             onChangeText={setMessage}
                             multiline={true}
                             numberOfLines={4}
                         />
-                        {errors.message && <Text style={{ color: 'red' }}>{errors.message}</Text>}
+                        {errors.message && <Text style={{ color: 'red' }} className='font-nun_light'>{errors.message}</Text>}
 
                         <TouchableOpacity onPress={handleKirimPress} className="bg-secondary-2 px-4 py-3 rounded-full mt-4">
-                            <Text className="text-white font-semibold text-center">Kirim</Text>
+                            <Text className="text-white font-nun_semibold text-center">Kirim</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

@@ -24,13 +24,13 @@ export default function EditEvent() {
     return (
         <ScrollView className='bg-white h-full' contentContainerStyle={{ paddingBottom: 200 }}>
             <View className='justify-center items-center my-10'>
-                <Text className='text-primary-2 font-bold text-3xl' style={{ textAlign: 'center', marginTop: 60 }}>Edit Acara</Text>
+                <Text className='text-primary-2 font-jos_bold text-3xl' style={{ textAlign: 'center', marginTop: 60 }}>Edit Acara</Text>
             </View>
             <View className="px-5">
                 <View className="mb-5">
-                    <Text className="text-primary-1 text-lg font-bold mb-2">Tipe Acara:</Text>
+                    <Text className="text-primary-1 text-lg font-nun_bold mb-2">Tipe Acara:</Text>
                     <TextInput
-                        className="bg-gray-200 px-4 py-3 rounded-xl"
+                        className="bg-gray-200 px-4 py-3 font-nun_light rounded-xl"
                         placeholder="Masukkan tipe acara"
                         value={eventType}
                         onChangeText={setEventType}
@@ -38,9 +38,9 @@ export default function EditEvent() {
                 </View>
 
                 <View className="mb-5">
-                    <Text className="text-primary-1 text-lg font-bold mb-2">Nama Pemilik Acara:</Text>
+                    <Text className="text-primary-1 text-lg font-nun_bold mb-2">Nama Pemilik Acara:</Text>
                     <TextInput
-                        className="bg-gray-200 px-4 py-3 rounded-xl"
+                        className="bg-gray-200 px-4 py-3 font-nun_light rounded-xl"
                         placeholder="Masukkan nama pemilik acara"
                         value={ownerName}
                         onChangeText={setOwnerName}
@@ -48,9 +48,9 @@ export default function EditEvent() {
                 </View>
 
                 <View className="mb-5">
-                    <Text className="text-primary-1 text-lg font-bold mb-2">Nama Acara:</Text>
+                    <Text className="text-primary-1 text-lg font-nun_bold mb-2">Nama Acara:</Text>
                     <TextInput
-                        className="bg-gray-200 px-4 py-3 rounded-xl"
+                        className="bg-gray-200 px-4 py-3 font-nun_light rounded-xl"
                         placeholder="Masukkan nama acara"
                         value={eventName}
                         onChangeText={setEventName}
@@ -58,9 +58,9 @@ export default function EditEvent() {
                 </View>
 
                 <View className="mb-5">
-                    <Text className="text-primary-1 text-lg font-bold mb-2">Tempat Berlangsung Acara:</Text>
+                    <Text className="text-primary-1 text-lg font-nun_bold mb-2">Tempat Berlangsung Acara:</Text>
                     <TextInput
-                        className="bg-gray-200 px-4 py-3 rounded-xl"
+                        className="bg-gray-200 px-4 py-3 font-nun_light rounded-xl"
                         placeholder="Masukkan tempat berlangsung acara"
                         value={eventLocation}
                         onChangeText={setEventLocation}
@@ -68,10 +68,10 @@ export default function EditEvent() {
                 </View>
 
                 <View className="mb-5">
-                    <Text className="text-primary-1 text-lg font-bold mb-2">Tanggal Berlangsung Acara:</Text>
+                    <Text className="text-primary-1 text-lg font-nun_bold mb-2">Tanggal Berlangsung Acara:</Text>
                     <TouchableOpacity onPress={() => setShowDatePicker(true)}>
                         <TextInput
-                            className="bg-gray-200 px-4 py-3 rounded-xl"
+                            className="bg-gray-200 px-4 py-3 font-nun_light rounded-xl"
                             placeholder="Masukkan tanggal acara"
                             value={eventDate ? eventDate.toDateString() : ''}
                             editable={false}
@@ -92,9 +92,9 @@ export default function EditEvent() {
                 </View>
 
                 <View className="mb-5">
-                    <Text className="text-primary-1 text-lg font-bold mb-2">Total Tamu:</Text>
+                    <Text className="text-primary-1 text-lg font-nun_bold mb-2">Total Tamu:</Text>
                     <TextInput
-                        className="bg-gray-200 px-4 py-3 rounded-xl"
+                        className="bg-gray-200 px-4 py-3 font-nun_light rounded-xl"
                         placeholder="Contoh: 200"
                         value={totalGuests}
                         onChangeText={setTotalGuests}
@@ -104,7 +104,7 @@ export default function EditEvent() {
 
                 <TouchableOpacity onPress={handleLanjutkanPress}>
                     <View className="bg-secondary-2 my-5 px-4 py-3 rounded-full flex-row justify-center items-center">
-                        <Text className="text-white font-semibold mr-2">Lanjutkan</Text>
+                        <Text className="text-white text-lg font-nun_semibold mr-2">Lanjutkan</Text>
                         <MaterialIcons name="arrow-right" size={20} color="white" />
                     </View>
                 </TouchableOpacity>
