@@ -31,22 +31,23 @@ export default function DashboardScreen() {
     ];
 
     return (
-        <ScrollView>
-            <View className="bg-white h-full" style={{ paddingBottom: 200 }}>
+        <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>
+            <View className="bg-white h-full">
                 <View className="pt-8 bg-primary-2 justify-center items-center" style={{ borderBottomRightRadius: 30, borderBottomLeftRadius: 30 }}>
                     <Image source={appIcon} className="w-40 h-24" />
                     <Text className='mb-5 font-nun_bold text-white text-lg'>Daftar Acara Anda</Text>
                 </View>
                 <View className='justify-center items-center p-4'>
                     {events.map((event, index) => (
-                        <DashboardEventCard
-                            key={index}
-                            title={event.title}
-                            names={event.names}
-                            location={event.location}
-                            date={event.date}
-                            status={event.status}
-                        />
+                        <View key={index} style={{ width: '100%', alignItems: 'center' }}>
+                            <DashboardEventCard
+                                title={event.title}
+                                names={event.names}
+                                location={event.location}
+                                date={event.date}
+                                status={event.status}
+                            />
+                        </View>
                     ))}
                 </View>
             </View>
