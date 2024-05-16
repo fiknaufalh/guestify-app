@@ -45,7 +45,7 @@ export default function IntroSlider({ setShowHomePage }: IntroSlideProps) {
       data={slides}
       renderItem={({ item }) => {
         return (
-          <View className="flex-1 items-center p-8 pt-20 mx-1">
+          <View className="flex-1 items-center p-8 pt-20">
             <Image
               source={item.image}
               className={`w-[${SIZES.width - 80}] h-[400]`}
