@@ -7,9 +7,8 @@ import QRCode from "@/screens/home/qrcode";
 import CreateEvent from "@/screens/home/createevent";
 import Payment from "@/screens/home/payment";
 import PaymentCompleted from "@/screens/home/paymentcompleted";
-import EditEvent from "@/screens/home/editevent";
 
-export type HomeScreenNames = 
+export type HomeScreenNames =
   ["HomeScreen", "DaftarQR", "QRCode", "CreateEvent", "Payment", "PaymentCompleted", "EditEvent"];
 export type HomeStackParamList = Record<HomeScreenNames[number], undefined>;
 export type HomeNavigation = NavigationProp<HomeStackParamList>;
@@ -47,11 +46,6 @@ const Home = () => {
       <Stack.Screen
         name="PaymentCompleted"
         component={PaymentCompleted}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="EditEvent"
-        component={EditEvent}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
