@@ -36,12 +36,12 @@ const FormKetikManual = () => {
             <View className="bg-primary-2 py-8 rounded-b-3xl">
                 <View className='justify-center items-center '>
                     <Image source={appIcon} className="w-40 h-24" />
-                    <Text className="text-white text-xl font-semibold">Silakan Ketik Manual Kode Undangan</Text>
-                    <Text className="mt-5 text-white text-sm">Pastikan kode sesuai dan sama persis</Text>
+                    <Text className="text-white text-xl font-nun_semibold" style={{ textAlign: 'center' }}>Silakan Masukkan Kode Undangan</Text>
+                    <Text className="mt-5 text-white font-nun_light text-xs">Pastikan kode sesuai dan sama persis</Text>
                 </View>
                 {/* Form */}
                 <View className="p-5">
-                    <Text className="text-white text-sm font-semibold my-5 mb-2">Kode Undangan:</Text>
+                    <Text className="text-white text-sm font-nun_bold my-5 mb-2">Kode Undangan:</Text>
                     <TextInput
                         placeholder="Masukkan Kode Undangan..."
                         textAlign="left"
@@ -49,12 +49,13 @@ const FormKetikManual = () => {
                         placeholderTextColor="gray"
                         onChangeText={handleTextInputChange} // Handle text input change
                         value={textInputValue}
+                        className='font-nun_light'
                     />
                 </View>
                 <View className="mt-5 justify-center items-center">
                     <TouchableOpacity onPress={handleLanjutkanPress}>
-                        <View className="bg-secondary-2 py-4 px-40 rounded-full w-11/12 flex-row items-center">
-                            <Text className="text-white font-semibold mr-2">Lanjutkan</Text>
+                        <View className="bg-secondary-2 py-4 px-32 rounded-full w-11/12 flex-row items-center">
+                            <Text className="text-white font-nun_semibold mr-2">Lanjutkan</Text>
                             <MaterialIcons name="arrow-right" size={20} color="white" />
                         </View>
                     </TouchableOpacity>
@@ -63,7 +64,7 @@ const FormKetikManual = () => {
             <View className='justify-center items-center'>
                 <TouchableOpacity onPress={handleBarcodePress}>
                     <View className="mt-8 bg-secondary-2 py-4 px-5 rounded-full flex-row justify-center items-center" style={{ width: 300 }}>
-                        <Text className="text-white font-semibold mr-2">Kembali ke QR Code</Text>
+                        <Text className="text-white font-nun_semibold mr-2">Kembali ke QR Code</Text>
                         <MaterialIcons name="qr-code" size={20} color="white" />
                     </View>
                 </TouchableOpacity>

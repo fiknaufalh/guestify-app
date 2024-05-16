@@ -35,7 +35,7 @@ export default function IntroSlider({ setShowHomePage }: IntroSlideProps) {
   const buttonLabel = (label: string) => {
     return (
       <View className="p-3">
-        <Text className="text-lg font-semibold text-primary-1">{label}</Text>
+        <Text className="text-lg font-semibold text-primary-1 font-jos_bold">{label}</Text>
       </View>
     );
   };

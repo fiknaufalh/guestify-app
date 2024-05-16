@@ -58,8 +58,8 @@ const ScannerCamera = () => {
             {/* Banner di atas page */}
             <View className="bg-primary-2 justify-center items-center py-5 rounded-b-3xl">
                 <Image source={appIcon} className="w-40 h-24" />
-                <Text className="text-white text-xl font-semibold mt-[-10]">Silakan Scan QR Code Anda</Text>
-                <Text className="mt-2 text-white text-sm">Pastikan QR Code berada di dalam frame</Text>
+                <Text className="text-white text-xl font-nun_semibold mt-[-10]">Silakan Scan QR Code Anda</Text>
+                <Text className="mt-2 text-white text-xs font-nun_light">Pastikan QR Code berada di dalam frame</Text>
             </View>
 
             {/* Scanner Barcode */}
@@ -77,11 +77,11 @@ const ScannerCamera = () => {
                 {scanned && <Button title={'Scan Ulang?'} onPress={() => setScanned(false)} color='#601C0E' />}
 
                 {/* Button Manual */}
-                <Text className="text-lg mt-2">Atau</Text>
-                <View className="flex items-center justify-center mt-2">
+                <Text className="text-md font-nun_light my-3">Atau</Text>
+                <View className="flex items-center justify-center">
                     <TouchableOpacity onPress={handleManualTypingPress}>
-                        <View className="bg-secondary-2 py-3 px-24 rounded-full flex-row items-center">
-                            <Text className="text-white font-semibold mr-2">Ketik secara manual</Text>
+                        <View className="bg-secondary-2 py-3 px-16 rounded-full flex-row items-center">
+                            <Text className="text-white font-nun_semibold mr-2">Ketik secara manual</Text>
                             <MaterialIcons name="edit" size={20} color="white" />
                         </View>
                     </TouchableOpacity>
