@@ -3,7 +3,7 @@ import { Text, View, Button, Image, TouchableOpacity } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { type ScannerNavigation } from '@/app/(tabs)/scanner';
 
 const appIcon = require('@/assets/icon.png');
 
@@ -11,7 +11,7 @@ const ScannerCamera = () => {
     // const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [text, setText] = useState('Not yet scanned');
-    const navigation = useNavigation<any>();
+    const { navigate } = useNavigation<ScannerNavigation>();
     const [permission, requestPermission] = useCameraPermissions();
 
     // Request Camera Permission
@@ -31,7 +31,7 @@ const ScannerCamera = () => {
     // Handle manual button press
     const handleManualTypingPress = () => {
         console.log('Manual typing pressed');
-        navigation.navigate('FormKetikManual');
+        navigate('FormKetikManual');
     }
 
     // Check permissions and return the screens
