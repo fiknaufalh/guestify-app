@@ -1,9 +1,9 @@
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
-import FormKetikManual from "@/components/formketikscan";
-import ScannerCamera from "@/components/scannercam";
-import FormCheckIn from "@/components/formcheckin";
-import ScannerLast from "@/components/scannerlast";
+import FormKetikManual from "@/screens/formketikscan";
+import ScannerCamera from "@/screens/scannercam";
+import FormCheckIn from "@/screens/formcheckin";
+import ScannerLast from "@/screens/scannerlast";
 
 const Stack = createStackNavigator();
 

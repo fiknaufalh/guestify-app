@@ -1,12 +1,12 @@
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from "@/components/homescreen";
-import DaftarQR from "@/components/daftarqrcode";
-import QRCode from "@/components/qrcode";
-import CreateEvent from "@/components/createevent";
-import Payment from "@/components/payment";
-import PaymentCompleted from "@/components/paymentcompleted";
-import EditEvent from "@/components/editevent";
+import HomeScreen from "@/screens/homescreen";
+import DaftarQR from "@/screens/daftarqrcode";
+import QRCode from "@/screens/qrcode";
+import CreateEvent from "@/screens/createevent";
+import Payment from "@/screens/payment";
+import PaymentCompleted from "@/screens/paymentcompleted";
+import EditEvent from "@/screens/editevent";
 
 const Stack = createStackNavigator();
 

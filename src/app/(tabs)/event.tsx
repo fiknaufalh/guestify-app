@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
-import EventScreen from "@/components/eventscreen";
-import RSVPScreen from "@/components/rsvpscreen";
-import RSVPHadir from "@/components/rsvphadir";
-import RSVPTidakHadir from "@/components/rsvptidakhadir";
+import EventScreen from "../../screens/eventscreen";
+import RSVPScreen from "../../screens/rsvpscreen";
+import RSVPHadir from "../../screens/rsvphadir";
+import RSVPTidakHadir from "../../screens/rsvptidakhadir";
 
 const Stack = createStackNavigator();
 
