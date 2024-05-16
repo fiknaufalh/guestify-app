@@ -55,7 +55,7 @@ export default function EventScreen() {
             </View>
             <View className="mt-5 justify-center items-center">
                 <TouchableOpacity onPress={handleLanjutkanPress}>
-                    <View className="bg-secondary-2 py-4 px-40 rounded-full w-11/12 flex-row items-center">
+                    <View className="bg-secondary-2 py-4 px-20 rounded-full w-11/12 flex-row items-center">
                         <Text className="text-white font-semibold mr-2">Lanjutkan</Text>
                         <MaterialIcons name="arrow-right" size={20} color="white" />
                     </View>

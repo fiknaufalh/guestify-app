@@ -26,7 +26,7 @@ const HomeBanner = () => {
           marginVertical: 10,
         }}
       />
-      <Text className="text-center text-white mx-2 my-2">
+      <Text className="text-center text-white mx-2 my-2 px-5">
         Transformasikan setiap acara menjadi pengalaman tak terlupakan dengan
         <Text className="text-secondary-1"> Guestify</Text>, di mana kemudahan
         RSVP, manajemen tamu, dan kecanggihan teknologi bertemu dalam satu
@@ -36,7 +36,7 @@ const HomeBanner = () => {
         <Button
           mode="contained"
           buttonColor={COLORS.secondary_2}
-          className="w-44 mr-4"
+          className="w-40 mr-4"
           onPress={handleDaftarQRPress}
         >
           Daftar QR Code
@@ -44,7 +44,7 @@ const HomeBanner = () => {
         <Button
           mode="contained"
           buttonColor={COLORS.secondary_2}
-          className="w-44"
+          className="w-40"
           onPress={handleCreateEventPress}
         >
           Buat Acara

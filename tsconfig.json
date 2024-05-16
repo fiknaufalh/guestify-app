@@ -6,7 +6,8 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "esModuleInterop": true
   },
   "extends": "expo/tsconfig.base",
   "include": [

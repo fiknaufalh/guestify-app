@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Button, Image, TouchableOpacity } from 'react-native';
-import { Camera } from 'expo-camera';
+import { CameraView, useCameraPermissions } from 'expo-camera';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const appIcon = require('../assets/icon.png');
 
 const ScannerCamera = () => {
-    const [hasPermission, setHasPermission] = useState(null);
+    // const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [text, setText] = useState('Not yet scanned');
-    const navigation = useNavigation();
-
-    // console.log(scanned, text, hasPermission);
-    const askForCameraPermission = async () => {
-        const { status } = await Camera.requestCameraPermissionsAsync();
-        setHasPermission(status === 'granted');
-    }
+    const navigation = useNavigation<any>();
+    const [permission, requestPermission] = useCameraPermissions();
 
     // Request Camera Permission
     useEffect(() => {
-        askForCameraPermission();
-    }, []);
+        if (!permission) {
+            requestPermission();
+        }
+    }, [permission]);
 
     // What happens when we scan the bar code
     const handleBarCodeScanned = ({ type, data }) => {
@@ -37,18 +35,19 @@ const ScannerCamera = () => {
     }
 
     // Check permissions and return the screens
-    if (hasPermission === null) {
+    if (!permission) {
         return (
             <View className="flex-1 items-center justify-center">
                 <Text>Requesting for camera permission</Text>
             </View>
         );
     }
-    if (hasPermission === false) {
+    if (!permission.granted) {
+        // Camera permissions are not granted yet.
         return (
             <View className="flex-1 items-center justify-center">
                 <Text className="m-2">No access to camera</Text>
-                <Button title={'Allow Camera'} onPress={() => askForCameraPermission()} />
+                <Button title={'Allow Camera'} onPress={requestPermission} />
             </View>
         );
     }
@@ -57,19 +56,19 @@ const ScannerCamera = () => {
     return (
         <View className="flex-1">
             {/* Banner di atas page */}
-            <View className="bg-primary-2 justify-center items-center py-8 rounded-b-3xl">
+            <View className="bg-primary-2 justify-center items-center py-5 rounded-b-3xl">
                 <Image source={appIcon} className="w-40 h-24" />
-                <Text className="text-white text-xl font-semibold">Silakan Scan QR Code Anda</Text>
-                <Text className="mt-5 text-white text-sm">Pastikan QR Code berada di dalam frame</Text>
+                <Text className="text-white text-xl font-semibold mt-[-10]">Silakan Scan QR Code Anda</Text>
+                <Text className="mt-2 text-white text-sm">Pastikan QR Code berada di dalam frame</Text>
             </View>
 
             {/* Scanner Barcode */}
             <View className="flex-1 items-center justify-center" style={{ marginTop: -100 }}>
-                <View className="overflow-hidden rounded-3xl" style={{ height: 400, width: 300 }}>
-                    <Camera
-                        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+                <View className="overflow-hidden rounded-3xl mt-2" style={{ height: 400, width: 300 }}>
+                    <CameraView
+                        onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
                         style={{ flex: 1 }}
-                    ></Camera>
+                    ></CameraView>
                 </View>
 
                 {/* Text result */}
@@ -81,7 +80,7 @@ const ScannerCamera = () => {
                 <Text className="text-lg mt-2">Atau</Text>
                 <View className="flex items-center justify-center mt-2">
                     <TouchableOpacity onPress={handleManualTypingPress}>
-                        <View className="bg-secondary-2 py-4 px-24 rounded-full flex-row items-center">
+                        <View className="bg-secondary-2 py-3 px-24 rounded-full flex-row items-center">
                             <Text className="text-white font-semibold mr-2">Ketik secara manual</Text>
                             <MaterialIcons name="edit" size={20} color="white" />
                         </View>
