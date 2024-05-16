@@ -3,8 +3,9 @@ import React from 'react';
 import { useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { type ScannerNavigation } from '@/app/(tabs)/scanner';
 
-const appIcon = require('../assets/icon.png');
+const appIcon = require('@/assets/icon.png');
 
 export default function FormCheckIn() {
     // State untuk menyimpan jumlah tamu
@@ -38,9 +39,9 @@ export default function FormCheckIn() {
     };
 
     // Selesai navigation
-    const navigation = useNavigation();
+    const { navigate } = useNavigation<ScannerNavigation>();
     const selesaiPress = () => {
-        navigation.navigate('ScannerLast');
+        navigate('ScannerLast');
     }
 
     return (

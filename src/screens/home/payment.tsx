@@ -1,12 +1,13 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
+import { type HomeNavigation } from '@/app/(tabs)/home';
 import React from 'react'
 
 export default function Payment() {
-    const navigation = useNavigation();
+    const { navigate } = useNavigation<HomeNavigation>();
     const handleLanjutkanPress = () => {
-        navigation.navigate('PaymentCompleted');
+        navigate('PaymentCompleted');
     };
     return (
         <View className='bg-white h-full'>

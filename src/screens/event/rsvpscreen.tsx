@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, Image, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { type EventNavigation } from '@/app/(tabs)/event';
 
 interface Errors {
     fullName?: string;
@@ -11,7 +12,7 @@ interface Errors {
 }
 
 export default function RSVPScreen() {
-    const navigation = useNavigation();
+    const { navigate } = useNavigation<EventNavigation>();
     const [fullName, setFullName] = useState('');
     const [phone, setPhone] = useState('');
     const [attendance, setAttendance] = useState(null);
@@ -43,9 +44,9 @@ export default function RSVPScreen() {
         }
 
         if (attendance === 'Hadir') {
-            navigation.navigate('RSVPHadir');
+            navigate('RSVPHadir');
         } else if (attendance === 'Tidak Hadir') {
-            navigation.navigate('RSVPTidakHadir');
+            navigate('RSVPTidakHadir');
         }
     };
 

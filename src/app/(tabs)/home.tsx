@@ -1,14 +1,20 @@
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from "@/screens/homescreen";
-import DaftarQR from "@/screens/daftarqrcode";
-import QRCode from "@/screens/qrcode";
-import CreateEvent from "@/screens/createevent";
-import Payment from "@/screens/payment";
-import PaymentCompleted from "@/screens/paymentcompleted";
-import EditEvent from "@/screens/editevent";
+import { NavigationProp } from "@react-navigation/native";
+import HomeScreen from "@/screens/home/homescreen";
+import DaftarQR from "@/screens/home/daftarqrcode";
+import QRCode from "@/screens/home/qrcode";
+import CreateEvent from "@/screens/home/createevent";
+import Payment from "@/screens/home/payment";
+import PaymentCompleted from "@/screens/home/paymentcompleted";
+import EditEvent from "@/screens/home/editevent";
 
-const Stack = createStackNavigator();
+export type HomeScreenNames = 
+  ["HomeScreen", "DaftarQR", "QRCode", "CreateEvent", "Payment", "PaymentCompleted", "EditEvent"];
+export type HomeStackParamList = Record<HomeScreenNames[number], undefined>;
+export type HomeNavigation = NavigationProp<HomeStackParamList>;
+
+const Stack = createStackNavigator<HomeStackParamList>();
 
 const Home = () => {
   return (

@@ -1,9 +1,14 @@
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
-import FormKetikManual from "@/screens/formketikscan";
-import ScannerCamera from "@/screens/scannercam";
-import FormCheckIn from "@/screens/formcheckin";
-import ScannerLast from "@/screens/scannerlast";
+import { NavigationProp } from "@react-navigation/native";
+import FormKetikManual from "@/screens/scanner/formketikscan";
+import ScannerCamera from "@/screens/scanner/scannercam";
+import FormCheckIn from "@/screens/scanner/formcheckin";
+import ScannerLast from "@/screens/scanner/scannerlast";
+
+export type ScannerScreenNames = ["Scanner", "FormKetikManual", "FormCheckIn", "ScannerLast"];
+export type ScannerStackParamList = Record<ScannerScreenNames[number], undefined>;
+export type ScannerNavigation = NavigationProp<ScannerStackParamList>;
 
 const Stack = createStackNavigator();
 

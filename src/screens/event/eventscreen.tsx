@@ -2,11 +2,12 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet, TextInput, Alert } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
+import { type EventNavigation } from '@/app/(tabs)/event'
 import { useState } from 'react'
 
 export default function EventScreen() {
     const [textInputValue, setTextInputValue] = useState('');
-    const navigation = useNavigation();
+    const { navigate } = useNavigation<EventNavigation>();
 
     const handleLanjutkanPress = () => {
         if (textInputValue.trim() === '') {
@@ -15,7 +16,7 @@ export default function EventScreen() {
         } else {
             // // Alert menampilkan teks yang dimasukkan
             // Alert.alert('Teks yang Dimasukkan', textInputValue);             //logic cek kode manual nanti disini
-            navigation.navigate('RSVPScreen');
+            navigate('RSVPScreen');
         }
     }
 

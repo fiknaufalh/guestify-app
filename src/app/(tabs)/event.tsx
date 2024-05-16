@@ -1,12 +1,16 @@
-import { View, Text } from "react-native";
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
-import EventScreen from "../../screens/eventscreen";
-import RSVPScreen from "../../screens/rsvpscreen";
-import RSVPHadir from "../../screens/rsvphadir";
-import RSVPTidakHadir from "../../screens/rsvptidakhadir";
+import { NavigationProp } from "@react-navigation/native";
+import EventScreen from "@/screens/event/eventscreen";
+import RSVPScreen from "@/screens/event/rsvpscreen";
+import RSVPHadir from "@/screens/event/rsvphadir";
+import RSVPTidakHadir from "@/screens/event/rsvptidakhadir";
 
-const Stack = createStackNavigator();
+export type EventScreenNames = ["EventScreen", "RSVPScreen", "RSVPHadir", "RSVPTidakHadir"];
+export type EventStackParamList = Record<EventScreenNames[number], undefined>;
+export type EventNavigation = NavigationProp<EventStackParamList>;
+
+const Stack = createStackNavigator<EventStackParamList>()
 
 const Event = () => {
   return (

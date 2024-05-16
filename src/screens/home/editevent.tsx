@@ -2,11 +2,12 @@ import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { type HomeNavigation } from '@/app/(tabs)/home';
 import { MaterialIcons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function EditEvent() {
-    const navigation = useNavigation();
+    const { navigate } = useNavigation<HomeNavigation>();
     const [eventType, setEventType] = useState(''); // Nilai awal diambil dari database
     const [ownerName, setOwnerName] = useState(''); // Nilai awal diambil dari database
     const [eventName, setEventName] = useState(''); // Nilai awal diambil dari database
@@ -17,7 +18,7 @@ export default function EditEvent() {
 
     const handleLanjutkanPress = () => {
         Alert.alert('Edit Acara Berhasil', '', [
-            { text: 'OK', onPress: () => navigation.navigate('DaftarQR') }
+            { text: 'OK', onPress: () => navigate('DaftarQR') }
         ]);
     };
 

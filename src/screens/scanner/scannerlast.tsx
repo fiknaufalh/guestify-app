@@ -2,16 +2,17 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { type ScannerNavigation } from '@/app/(tabs)/scanner';
 
-const appIcon = require('../assets/icon.png');
-const checked = require('../assets/checkinberhasil.png');
+const appIcon = require('@/assets/icon.png');
+const checked = require('@/assets/checkinberhasil.png');
 
 export default function ScannerLast() {
-    const navigation = useNavigation();
+    const { navigate } = useNavigation<ScannerNavigation>();
 
     const handleBarcodePress = () => {
         console.log('Barcode pressed');
-        navigation.navigate('Scanner');
+        navigate('Scanner');
     }
     return (
         <View className='bg-white h-full'>

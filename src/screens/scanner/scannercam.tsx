@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const appIcon = require('../assets/icon.png');
+const appIcon = require('@/assets/icon.png');
 
 const ScannerCamera = () => {
     // const [hasPermission, setHasPermission] = useState(null);

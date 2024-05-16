@@ -2,6 +2,7 @@ import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { type HomeNavigation } from '@/app/(tabs)/home';
 import { MaterialIcons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -15,7 +16,7 @@ interface Errors {
 }
 
 export default function CreateEvent() {
-    const navigation = useNavigation();
+    const { navigate } = useNavigation<HomeNavigation>();
     const [eventType, setEventType] = useState('');
     const [ownerName, setOwnerName] = useState('');
     const [eventName, setEventName] = useState('');
@@ -42,7 +43,7 @@ export default function CreateEvent() {
         }
 
         // Add your form submission logic here
-        navigation.navigate('Payment');
+        navigate('Payment');
     };
 
     return (

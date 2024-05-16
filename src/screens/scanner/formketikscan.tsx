@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { type ScannerNavigation } from '@/app/(tabs)/scanner';
 
-const appIcon = require('../assets/icon.png');
+const appIcon = require('@/assets/icon.png');
 
 const FormKetikManual = () => {
     const [textInputValue, setTextInputValue] = useState('');
-    const navigation = useNavigation();
+    const { navigate } = useNavigation<ScannerNavigation>();
 
     const handleLanjutkanPress = () => {
         if (textInputValue.trim() === '') {
@@ -16,7 +17,7 @@ const FormKetikManual = () => {
         } else {
             // // Alert menampilkan teks yang dimasukkan
             // Alert.alert('Teks yang Dimasukkan', textInputValue);             //logic cek kode manual nanti disini
-            navigation.navigate('FormCheckIn');
+            navigate('FormCheckIn');
         }
     }
 
@@ -26,7 +27,7 @@ const FormKetikManual = () => {
 
     const handleBarcodePress = () => {
         console.log('Barcode pressed');
-        navigation.navigate('Scanner');
+        navigate('Scanner');
     }
 
     return (

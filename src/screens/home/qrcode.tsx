@@ -2,14 +2,15 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { type HomeNavigation } from '@/app/(tabs)/home';
 
-const qr = require('../assets/qrdummy.png');
+const qr = require('@/assets/qrdummy.png');
 export default function QRCode() {
-    const navigation = useNavigation();
+    const { navigate } = useNavigation<HomeNavigation>();
 
     const handleDaftarQRPress = () => {
         console.log('Barcode pressed');
-        navigation.navigate('DaftarQR');
+        navigate('DaftarQR');
     }
     return (
         <View className='bg-white h-full'>

@@ -1,6 +1,6 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
-import QRCodeCard from '../components/qrcodecard'
+import QRCodeCard from '../../components/qrcodecard'
 
 export default function DaftarQR() {
     return (
