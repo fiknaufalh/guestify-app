@@ -23,7 +23,7 @@ const Header = () => {
           />
         </View>
       </View>
-      <Text className="text-white font-semibold text-xl" style={{ marginStart: 20 }}>
+      <Text className="text-white font-nun_semibold text-xl" style={{ marginStart: 20 }}>
         👋 Halo, Bob!
       </Text>
     </View>

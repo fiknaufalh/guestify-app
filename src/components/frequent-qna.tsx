@@ -25,7 +25,7 @@ const QnA = [
 const FrequentQnA = () => {
   return (
     <View className="mx-[20px] my-2">
-      <Text className="text-primary-2 text-2xl font-bold my-2">Pertanyaan</Text>
+      <Text className="text-primary-2 text-2xl my-2 font-jos_bold">Pertanyaan</Text>
       <View className="w-full">
         {QnA.map((item, index) => (
           <View
@@ -36,7 +36,7 @@ const FrequentQnA = () => {
               className="bg-primary-2 rounded-lg w-full h-14 items-center justify-center my-2"
               style={{ padding: 8 }}
             >
-              <Text className="text-white text-sm text-center">
+              <Text className="text-white text-sm text-center font-nun_regular">
                 {item.question}
               </Text>
             </View>
@@ -45,7 +45,7 @@ const FrequentQnA = () => {
               className="bg-secondary-2 rounded-lg w-full h-14 items-center justify-center"
               style={{ padding: 8 }}
             >
-              <Text className=" text-white text-sm text-center">
+              <Text className=" text-white text-sm text-center font-nun_regular">
                 {item.answer}
               </Text>
             </View>

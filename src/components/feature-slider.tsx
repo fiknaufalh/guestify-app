@@ -22,7 +22,7 @@ const slides = [
 const FeatureSlider = () => {
   return (
     <View className="mx-[20px] my-2">
-      <Text className="text-primary-2 text-2xl font-bold my-2">
+      <Text className="text-primary-2 text-2xl my-2 font-jos_bold">
         Fitur Menarik
       </Text>
       <FlatList
@@ -31,7 +31,7 @@ const FeatureSlider = () => {
         renderItem={({ item, index }) => (
           <View className="bg-primary-2 h-36 w-36 mx-2 rounded-xl flex items-center justify-center">
             <Image source={item.image} className="h-16 w-16" />
-            <Text className="text-white text-sm text-center mt-2">
+            <Text className="text-white text-sm text-center mt-2 font-pop_regular">
               {item.title}
             </Text>
           </View>

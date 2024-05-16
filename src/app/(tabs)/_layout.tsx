@@ -45,6 +45,7 @@ export default function TabLayout() {
               <Text
                 style={{
                   fontSize: 12,
+                  fontFamily: "NunitoSans-Regular",
                   paddingTop: 2,
                   color: focused ? COLORS.secondary_2 : COLORS.white,
                 }}
@@ -81,6 +82,7 @@ export default function TabLayout() {
               <Text
                 style={{
                   fontSize: 12,
+                  fontFamily: "NunitoSans-Regular",
                   paddingTop: 2,
                   color: focused ? COLORS.secondary_2 : COLORS.white,
                 }}
@@ -127,6 +129,7 @@ export default function TabLayout() {
               <Text
                 style={{
                   fontSize: 12,
+                  fontFamily: "NunitoSans-Regular",
                   marginTop: -40,
                   color: focused ? COLORS.secondary_2 : COLORS.white,
                 }}
@@ -163,6 +166,7 @@ export default function TabLayout() {
               <Text
                 style={{
                   fontSize: 12,
+                  fontFamily: "NunitoSans-Regular",
                   paddingTop: 2,
                   color: focused ? COLORS.secondary_2 : COLORS.white,
                 }}
@@ -199,6 +203,7 @@ export default function TabLayout() {
               <Text
                 style={{
                   fontSize: 12,
+                  fontFamily: "NunitoSans-Regular",
                   paddingTop: 2,
                   color: focused ? COLORS.secondary_2 : COLORS.white,
                 }}
