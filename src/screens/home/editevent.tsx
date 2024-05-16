@@ -35,6 +35,7 @@ export default function EditEvent() {
                         placeholder="Masukkan tipe acara"
                         value={eventType}
                         onChangeText={setEventType}
+                        placeholderTextColor="gray"
                     />
                 </View>
 
@@ -45,6 +46,7 @@ export default function EditEvent() {
                         placeholder="Masukkan nama pemilik acara"
                         value={ownerName}
                         onChangeText={setOwnerName}
+                        placeholderTextColor="gray"
                     />
                 </View>
 
@@ -55,6 +57,7 @@ export default function EditEvent() {
                         placeholder="Masukkan nama acara"
                         value={eventName}
                         onChangeText={setEventName}
+                        placeholderTextColor="gray"
                     />
                 </View>
 
@@ -65,6 +68,7 @@ export default function EditEvent() {
                         placeholder="Masukkan tempat berlangsung acara"
                         value={eventLocation}
                         onChangeText={setEventLocation}
+                        placeholderTextColor="gray"
                     />
                 </View>
 
@@ -100,6 +104,7 @@ export default function EditEvent() {
                         value={totalGuests}
                         onChangeText={setTotalGuests}
                         keyboardType="numeric"
+                        placeholderTextColor="gray"
                     />
                 </View>
 

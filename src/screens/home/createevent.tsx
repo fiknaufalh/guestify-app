@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Platform } from 'react-native';
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -59,6 +59,7 @@ export default function CreateEvent() {
                         placeholder="Masukkan tipe acara"
                         value={eventType}
                         onChangeText={setEventType}
+                        placeholderTextColor="gray"
                     />
                     {errors.eventType && <Text className='font-nun_light' style={{ color: 'red' }}>{errors.eventType}</Text>}
                 </View>
@@ -70,6 +71,7 @@ export default function CreateEvent() {
                         placeholder="Masukkan nama pemilik acara"
                         value={ownerName}
                         onChangeText={setOwnerName}
+                        placeholderTextColor="gray"
                     />
                     {errors.ownerName && <Text className='font-nun_light' style={{ color: 'red' }}>{errors.ownerName}</Text>}
                 </View>
@@ -81,6 +83,8 @@ export default function CreateEvent() {
                         placeholder="Masukkan nama acara"
                         value={eventName}
                         onChangeText={setEventName}
+                        placeholderTextColor="gray"
+
                     />
                     {errors.eventName && <Text className='font-nun_light' style={{ color: 'red' }}>{errors.eventName}</Text>}
                 </View>
@@ -92,6 +96,7 @@ export default function CreateEvent() {
                         placeholder="Masukkan tempat berlangsung acara"
                         value={eventLocation}
                         onChangeText={setEventLocation}
+                        placeholderTextColor="gray"
                     />
                     {errors.eventLocation && <Text className='font-nun_light' style={{ color: 'red' }}>{errors.eventLocation}</Text>}
                 </View>
@@ -109,15 +114,17 @@ export default function CreateEvent() {
                     </TouchableOpacity>
                     {errors.eventDate && <Text className='font-nun_light' style={{ color: 'red' }}>{errors.eventDate}</Text>}
                     {showDatePicker && (
-                        <DateTimePicker
-                            value={eventDate || new Date()}
-                            mode="date"
-                            display="default"
-                            onChange={(event, selectedDate) => {
-                                setShowDatePicker(false);
-                                setEventDate(selectedDate || eventDate);
-                            }}
-                        />
+                        <View>
+                            <DateTimePicker
+                                value={eventDate || new Date()}
+                                mode="date"
+                                display={Platform.OS === 'ios' ? 'inline' : 'default'}
+                                onChange={(event, selectedDate) => {
+                                    setShowDatePicker(false);
+                                    setEventDate(selectedDate || eventDate);
+                                }}
+                            />
+                        </View>
                     )}
                 </View>
 
@@ -129,6 +136,7 @@ export default function CreateEvent() {
                         value={totalGuests}
                         onChangeText={setTotalGuests}
                         keyboardType="numeric"
+                        placeholderTextColor="gray"
                     />
                     {errors.totalGuests && <Text className='font-nun_light' style={{ color: 'red' }}>{errors.totalGuests}</Text>}
                 </View>
