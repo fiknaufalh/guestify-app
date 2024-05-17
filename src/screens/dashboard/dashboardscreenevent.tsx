@@ -2,9 +2,8 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import TotalConfirmed from '@/components/totalconfirmed';
-import DashboardCard from '@/components/dashboardcard';
-import { ScrollView } from 'react-native-gesture-handler';
+import Tab2 from './tabrsvp';
+import Tab3 from './tabguestbook';
 
 const appIcon = require('@/assets/icon.png');
 
@@ -45,26 +44,3 @@ function Tab1() {
     );
 }
 
-function Tab2() {
-    return (
-        <ScrollView className='bg-white' contentContainerStyle={{ paddingBottom: 200 }}>
-            <View className="bg-white flex-1 h-full">
-                <TotalConfirmed label="Total Confirmed" total="111200" description="undangan" />
-                <View className='justify-center items-center'>
-                    <DashboardCard />
-                    <DashboardCard />
-                    <DashboardCard />
-                    <DashboardCard />
-                </View>
-            </View>
-        </ScrollView>
-    );
-}
-
-function Tab3() {
-    return (
-        <View className="bg-white flex-1">
-            <TotalConfirmed label="Total Hadir" total="1" description="undangan" />
-        </View>
-    );
-}
