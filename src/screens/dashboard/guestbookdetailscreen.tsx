@@ -1,10 +1,12 @@
+import GuestTable from '@/components/guesttable';
 import React from 'react';
-import { View, Text } from 'react-native';
+import data from '@/assets/datadummyguest.json';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function GuestBookDetailScreens() {
     return (
-        <View className="bg-white flex-1 justify-center items-center">
-            <Text>Guestbook Detail Screen</Text>
-        </View>
+        <ScrollView className='bg-white' contentContainerStyle={{ paddingBottom: 150 }}>
+            <GuestTable data={data} />
+        </ScrollView>
     );
 }

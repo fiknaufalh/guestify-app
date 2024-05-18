@@ -105,7 +105,7 @@
     },
     {
         "id": 14,
-        "guestName": "William Rodriguez",
+        "guestName": "Evangelina Rodriguez",
         "phoneNumber": "555-666-7777",
         "details": "Friend",
         "rsvpStatus": "Cancelled",
@@ -116,7 +116,7 @@
         "guestName": "Mia Martinez",
         "phoneNumber": "222-333-4444",
         "details": "Bride",
-        "rsvpStatus": "Confirmed",
+        "rsvpStatus": "Declined",
         "qrCodeLink": "http://example.com/qr15"
     },
     {
@@ -129,7 +129,7 @@
     },
     {
         "id": 17,
-        "guestName": "Sophia Wilson",
+        "guestName": "Sophia Wilson ajskajskjakjsdakjdkjaskdjaskjd",
         "phoneNumber": "333-222-1111",
         "details": "Bride",
         "rsvpStatus": "Cancelled",

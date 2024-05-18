@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import data from '@/assets/datadummyrsvp.json';
 import TableRSVP from '@/components/tablersvp';
 import { ScrollView } from 'react-native-gesture-handler';

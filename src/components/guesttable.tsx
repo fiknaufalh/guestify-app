@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { ScrollView, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import RSVPTableChip from './rsvptablechip';
+import GuestTableChip from './guesttablechip';
 
-const TableRSVP = ({ data }) => {
+const GuestTable = ({ data }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [sortKey, setSortKey] = useState(null);
@@ -49,14 +49,12 @@ const TableRSVP = ({ data }) => {
         currentPage * recordsPerPage
     );
 
-    console.log(displayedData)
-
     const startNumber = filteredData.length > 0 ? (currentPage - 1) * recordsPerPage + 1 : 0;
     const endNumber = currentPage * recordsPerPage <= filteredData.length ? currentPage * recordsPerPage : filteredData.length;
 
     const handleExport = () => {
         // Implement your export logic here
-        console.log("Exporting RSVP list...");
+        console.log("Exporting table list...");
     };
 
     return (
@@ -75,7 +73,7 @@ const TableRSVP = ({ data }) => {
                         onPress={handleExport}
                     >
                         <MaterialIcons name="file-download" size={24} color="white" />
-                        <Text className="ml-2 text-white font-nun_bold">Export RSVP List</Text>
+                        <Text className="ml-2 text-white font-nun_bold">Export Table List</Text>
                     </TouchableOpacity>
                 </View>
                 <View className="rounded-lg overflow-hidden">
@@ -98,19 +96,30 @@ const TableRSVP = ({ data }) => {
                             </TouchableOpacity>
                         </View>
                         <View className='flex-row w-40 items-center'>
-                            <Text className="p-2 text-white font-nun_bold">Detail</Text>
-                            <TouchableOpacity onPress={() => changeSort('detail')}>
+                            <Text className="p-2 text-white font-nun_bold">Check-In</Text>
+                            <TouchableOpacity onPress={() => changeSort('checkIn')}>
                                 <MaterialIcons name="sort" size={20} color="white" />
                             </TouchableOpacity>
                         </View>
                         <View className='flex-row w-40 items-center'>
                             <Text className="p-2 text-white flex flex-row items-center font-nun_bold">
-                                RSVP Status
+                                Gift
                             </Text>
-                            <TouchableOpacity onPress={() => changeSort('rsvpStatus')}>
+                            <TouchableOpacity onPress={() => changeSort('gift')}>
                                 <MaterialIcons name="sort" size={20} color="white" />
                             </TouchableOpacity>
                         </View>
+                        <View className='flex-row w-40 items-center'>
+                            <Text className="p-2 text-white flex flex-row items-center font-nun_bold">
+                                Souvenir
+                            </Text>
+                            <TouchableOpacity onPress={() => changeSort('souvenir')}>
+                                <MaterialIcons name="sort" size={20} color="white" />
+                            </TouchableOpacity>
+                        </View>
+                        <Text className="w-40 p-2 text-white flex flex-row items-center font-nun_bold">
+                            Total Guest
+                        </Text>
                     </View>
                     <View>
                         {displayedData.map((guest, index) => (
@@ -118,13 +127,19 @@ const TableRSVP = ({ data }) => {
                                 key={guest.id}
                                 className={`flex flex-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`}
                             >
-                                <Text className="w-20 p-4 font-nun_regular">{startNumber + index}</Text>
-                                <Text className="w-40 p-4 font-nun_regular">{guest.guestName}</Text>
-                                <Text className="w-40 p-4 font-nun_regular">{guest.phoneNumber}</Text>
-                                <Text className="w-40 p-4 font-nun_regular">{guest.details}</Text>
+                                <Text className="w-20 p-4 font-nun_regular items-center">{startNumber + index}</Text>
+                                <Text className="w-40 p-4 font-nun_regular items-center">{guest.guestName}</Text>
+                                <Text className="w-40 p-4 font-nun_regular items-center">{guest.phoneNumber}</Text>
                                 <View className='w-40 justify-center items-center'>
-                                    <RSVPTableChip value={guest.rsvpStatus} />
+                                    <GuestTableChip value={guest.checkIn} />
                                 </View>
+                                <View className='w-40 justify-center items-center'>
+                                    <GuestTableChip value={guest.gift} />
+                                </View>
+                                <View className='w-40 justify-center items-center'>
+                                    <GuestTableChip value={guest.souvenir} />
+                                </View>
+                                <Text className="w-40 p-4 font-nun_regular items-center">{guest.totalGuest}</Text>
                             </View>
                         ))}
                     </View>
@@ -166,4 +181,4 @@ const TableRSVP = ({ data }) => {
     );
 };
 
-export default TableRSVP;
+export default GuestTable;
