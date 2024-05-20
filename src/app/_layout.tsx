@@ -1,11 +1,12 @@
 import "../global.css";
-import { Slot, SplashScreen } from "expo-router";
+import { Slot, SplashScreen, useRouter, useSegments } from "expo-router";
 import React, { useEffect } from "react";
 import { useFonts } from "expo-font";
+import { AuthContextProvider, useAuth } from "@/contexts/authContext";
 
 SplashScreen.preventAutoHideAsync();
 
-export default function Layout() {
+const MainLayout = () => {
   const [fontsLoaded, error] = useFonts({
     // Poppins
     "Poppins-Black": require("../assets/fonts/Poppins/Poppins-Black.ttf"),
@@ -54,6 +55,22 @@ export default function Layout() {
     "JosefinSans-ThinItalic": require("../assets/fonts/JosefinSans/JosefinSans-ThinItalic.ttf"),
   });
 
+  const { isLoggedIn } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof isLoggedIn === "undefined") return;
+    const inApp = segments[0] == "(tabs)";
+    if (isLoggedIn && !inApp) {
+      // redirect to home
+      router.replace("home");
+    } else if (!isLoggedIn) {
+      // redirect to login
+      router.replace("login");
+    }
+  }, [isLoggedIn]);
+
   useEffect(() => {
     if (error) throw error;
     if (fontsLoaded) SplashScreen.hideAsync();
@@ -62,4 +79,12 @@ export default function Layout() {
   if (!fontsLoaded && !error) return null;
 
   return <Slot />;
+}
+
+export default function RootLayout() {
+  return (
+    <AuthContextProvider>
+      <MainLayout />
+    </AuthContextProvider>
+  );
 }
