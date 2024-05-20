@@ -2,8 +2,9 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import TotalConfirmed from '@/components/totalconfirmed';
-import DashboardCard from '@/components/dashboardcard';
+import Tab2 from './tabrsvp';
+import Tab3 from './tabguestbook';
+import InputTamuCard from '@/components/inputtamucard';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const appIcon = require('@/assets/icon.png');
@@ -39,32 +40,13 @@ export default function DashboardScreenEvent() {
 
 function Tab1() {
     return (
-        <View className="bg-white flex-1 justify-center items-center">
-            <Text>Tab 1 Content</Text>
-        </View>
-    );
-}
-
-function Tab2() {
-    return (
-        <ScrollView className='bg-white' contentContainerStyle={{ paddingBottom: 200 }}>
-            <View className="bg-white flex-1 h-full">
-                <TotalConfirmed label="Total Confirmed" total="111200" description="undangan" />
-                <View className='justify-center items-center'>
-                    <DashboardCard />
-                    <DashboardCard />
-                    <DashboardCard />
-                    <DashboardCard />
-                </View>
+        <ScrollView className='bg-white h-full' contentContainerStyle={{ paddingBottom: 150, paddingTop: 50 }}>
+            <View className="bg-white flex-1 justify-center items-center">
+                <InputTamuCard number={1} title={"Silakan Download Template"} description={"Silakan klik tombol “Download Template” di sini untuk mendapatkan template daftar tamu dalam format file spreadsheet (*.XLS). Selanjutnya, isi file tersebut dengan data tamu Anda sesuai format yang ditentukan."} icon={"file-download"} buttonText={"Download Template"} />
+                <InputTamuCard number={2} title={"Unggah File yang Telah Anda Isi"} description={"Kemudian upload file yang sudah Anda isi dengan mengklik tombol upload di bawah. Format file harus *.XLS dengan ukuran maksimal 100 KB."} icon={"file-upload"} buttonText={"Upload Filled File"} />
+                <InputTamuCard number={3} title={"Unduh File yang Dihasilkan"} description={"Terakhir, Anda dapat mendownload hasilnya setelah tombol download dapat diklik."} icon={"file-download"} buttonText={"Download Generated File"} />
             </View>
         </ScrollView>
     );
 }
 
-function Tab3() {
-    return (
-        <View className="bg-white flex-1">
-            <TotalConfirmed label="Total Hadir" total="1" description="undangan" />
-        </View>
-    );
-}
