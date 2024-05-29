@@ -2,14 +2,15 @@ import React, { useContext, useEffect } from "react";
 import { createContext } from "react";
 import { useState } from "react";
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth, db } from "@/firebase/firebaseConfig";
+import { auth, db } from "@/database/firebaseConfig";
 import { addDoc, getDoc, setDoc, doc } from "firebase/firestore";
+import { supabase } from "@/database/supabaseConfig";
 
 type AuthContextType = {
   user: any;
   isLoggedIn: boolean;
   login: (email: string, password: string) => Promise<{success: boolean, msg?: string}>;
-  logout: () => void;
+  logout: () => Promise<{success: boolean, msg?: string}>;
   register: (name: string, email: string, phone: string, password: string, profileUrl: string) 
       => Promise<{success: boolean, msg?: string, data?: any}>;
 };
@@ -18,17 +19,16 @@ export const AuthContext = createContext<AuthContextType>({
   user: null,
   isLoggedIn: undefined,
   login: async (email: string, password: string) => ({success: false}),
-  logout: () => {},
+  logout: async () => ({success: false}),
   register: async (name: string, email: string, phone: string, password: string, profileUrl: string) => ({success: false}),
 });
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
-
+  
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      console.log("got user: ", user)
       if (user) {
         setUser(user);
         setIsLoggedIn(true);
@@ -37,6 +37,7 @@ export const AuthContextProvider = ({ children }) => {
         setUser(null);
         setIsLoggedIn(false);
       }
+      console.log("got user: ", user)
     });
 
     return unsub;
@@ -78,6 +79,7 @@ export const AuthContextProvider = ({ children }) => {
       const response = await createUserWithEmailAndPassword(auth, email, password);
       console.log("response.user: ", response.user);
 
+      // Add user to firebase
       await setDoc(doc(db, "users", response.user.uid), {
         name,
         email,
@@ -85,6 +87,16 @@ export const AuthContextProvider = ({ children }) => {
         profileUrl,
         userId: response.user.uid,
       });
+
+      // add user to supabase
+      const { error } = await supabase
+        .from("users")
+        .insert([{ id: response.user.uid, name, email, phone, profile_url: profileUrl }]);
+
+      if (error) {
+        console.log("error: ", error);
+        return {success: false, msg: error.message};
+      }
 
       return {success: true, data: response.user};
     } catch (error) {

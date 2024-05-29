@@ -1,34 +1,90 @@
 import { View, Text, Image } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import DashboardEventCard from '@/components/dashboardeventcard';
 import { ScrollView } from 'react-native-gesture-handler';
+import { collection, getDocs, Timestamp, query, where, onSnapshot } from 'firebase/firestore';
+import { db } from '@/database/firebaseConfig';
+import { supabase } from '@/database/supabaseConfig';
+import { useAuth } from '@/contexts/authContext';
 
 const appIcon = require('../../assets/icon.png');
 
+type Event = {
+    organizer_id: string,
+    type: string,
+    name: string,
+    place: string,
+    event_date: Date,
+    price: number,
+    status: string,
+}
+
 export default function DashboardScreen() {
-    const events = [
-        {
-            title: 'Acara Pernikahan',
-            names: 'Michael & Putri',
-            location: 'Wisma Tamansari, Medan, Sumatera Utara',
-            date: '20 Maret 2024',
-            status: 'Belum Berlangsung'
-        },
-        {
-            title: 'Acara Ulang Tahun',
-            names: 'Dewi & Siti',
-            location: 'Hotel Santika, Jakarta',
-            date: '10 Juni 2024',
-            status: 'Sudah Berlangsung'
-        },
-        {
-            title: 'Acara Seminar',
-            names: 'Dr. Arief & Tim',
-            location: 'Balai Kartini, Jakarta',
-            date: '15 Juli 2024',
-            status: 'Akan Datang'
-        }
-    ];
+    const [events, setEvents] = useState<Event[]>([]);
+    const { user } = useAuth();
+    const userId = user.userId;
+
+    // useEffect(() => {
+    //     const eventsCollection = collection(db, 'events');
+    //     const eventsQuery = query(eventsCollection, where('organizer_id', '==', userId));
+        
+    //     const unsubscribe = onSnapshot(eventsQuery, (snapshot) => {
+    //         const eventsData = snapshot.docs.map(doc => {
+    //             const data = doc.data() as Omit<Event, 'event_date'> & { event_date: Timestamp };
+    //             return {
+    //                 ...data,
+    //                 event_date: data.event_date.toDate(),
+    //             } as Event;
+    //         });
+    //         setEvents(eventsData);
+    //     });
+
+    //     // Cleanup subscription on unmount
+    //     return () => unsubscribe();
+    // }, [userId]);
+    // console.log(events);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const { data, error } = await supabase
+                .from('events')
+                .select('*')
+                .eq('organizer_id', userId);
+
+            if (error) {
+                console.error('Error fetching events:', error);
+            } else {
+                const eventsData = data.map(event => ({
+                    ...event,
+                    event_date: new Date(event.event_date), // Convert string to Date object
+                }));
+                setEvents(eventsData);
+            }
+        };
+
+        fetchData();
+
+        // Subscribe to real-time changes
+        const subscription = supabase
+            .channel("event-changes")
+            .on(
+                'postgres_changes', 
+                { 
+                    event: "*",
+                    schema: "public",
+                    table: "events",
+                },
+                payload => { fetchData(); }
+            )
+            .subscribe();
+
+        console.log("HAI")
+
+        // Cleanup subscription on unmount
+        return () => {
+            supabase.removeChannel(subscription);
+        };
+    }, []);
 
     return (
         <ScrollView className="bg-white h-full" contentContainerStyle={{ paddingBottom: 200 }}>
@@ -40,10 +96,10 @@ export default function DashboardScreen() {
                 {events.map((event, index) => (
                     <View key={index} style={{ width: '100%', alignItems: 'center' }}>
                         <DashboardEventCard
-                            title={event.title}
-                            names={event.names}
-                            location={event.location}
-                            date={event.date}
+                            type={event.type}
+                            name={event.name}
+                            place={event.place}
+                            event_date={event.event_date}
                             status={event.status}
                         />
                     </View>

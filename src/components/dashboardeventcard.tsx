@@ -3,16 +3,17 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native';
 import { EventNavigation } from '@/app/(tabs)/dashboard';
+import { convertDate } from '@/utils/dateConverter';
 
 interface EventCardProps {
-    title: string;
-    names: string;
-    location: string;
-    date: string;
-    status: string;
+    type: string,
+    name: string,
+    place: string,
+    event_date: Date,
+    status: string,
 }
 
-export default function DashboardEventCard({ title, names, location, date, status }: EventCardProps) {
+export default function DashboardEventCard({ type, name, place, event_date, status }: EventCardProps) {
     const navigation = useNavigation<EventNavigation>();
 
     const handlePress = () => {
@@ -25,10 +26,10 @@ export default function DashboardEventCard({ title, names, location, date, statu
             style={{ width: 350 }}
             onPress={handlePress}
         >
-            <Text className='text-white font-nun_bold text-lg mb-2'>{title}</Text>
-            <Text className='text-secondary-2 font-nun_semibold text-md mb-2'>{names}</Text>
-            <Text className='text-white font-nun_regular text-xs mb-2' style={{ textAlign: 'center' }}>{location}</Text>
-            <Text className='text-white font-nun_regular text-xs mb-4'>{date}</Text>
+            <Text className='text-white font-nun_bold text-lg mb-2'>{type}</Text>
+            <Text className='text-secondary-2 font-nun_semibold text-md mb-2'>{name}</Text>
+            <Text className='text-white font-nun_regular text-xs mb-2' style={{ textAlign: 'center' }}>{place}</Text>
+            <Text className='text-white font-nun_regular text-xs mb-4'>{convertDate(event_date)}</Text>
             <View className='bg-secondary-2 rounded-full p-3'>
                 <Text className='font-nun_semibold text-xs text-white'>{status}</Text>
             </View>
