@@ -31,6 +31,21 @@ export default function CreateEvent() {
     const { user } = useAuth();
     const userId = user.userId;
 
+    // Function to generate random event code
+    const generateEventCode = () => {
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const numbers = '0123456789';
+        let code = '';
+
+        for (let i = 0; i < 4; i++) {
+            code += letters[Math.floor(Math.random() * letters.length)];
+        }
+        for (let i = 0; i < 4; i++) {
+            code += numbers[Math.floor(Math.random() * numbers.length)];
+        }
+
+        return code;
+    };
 
     const handleLanjutkanPress = async () => {
         let newErrors: Errors = {};
@@ -55,6 +70,8 @@ export default function CreateEvent() {
             status = isToday ? 'Sedang Berlangsung' : 'Belum Berlangsung';
         }
 
+        const eventCode = generateEventCode();
+
         try {
             const { data, error } = await supabase
                 .from('events')
@@ -65,6 +82,7 @@ export default function CreateEvent() {
                     place: eventLocation,
                     event_date: eventDate,
                     status: status,
+                    event_code: eventCode,
                 }]);
 
             if (error) {
