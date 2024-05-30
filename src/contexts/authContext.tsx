@@ -50,6 +50,12 @@ export const AuthContextProvider = ({ children }) => {
     if (docSnap.exists()) {
       const data = docSnap.data();
       setUser({...user, name: data.name, phone: data.phone, profileUrl: data.profileUrl, userId: data.userId, email: data.email })
+      setUser({...user, 
+        name: data.name, 
+        phone: data.phone, 
+        profileUrl: data.profileUrl, 
+        userId: data.userId, 
+        email: data.email});
     }
   }
 
@@ -78,17 +84,20 @@ export const AuthContextProvider = ({ children }) => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
       console.log("response.user: ", response.user);
+      const userId = response.user.uid;
 
-      // Add user to firebase
-      await setDoc(doc(db, "users", response.user.uid), {
+      const userData = {
         name,
         email,
         phone,
         profileUrl,
-        userId: response.user.uid,
-      });
+        userId,
+      };
 
-      // add user to supabase
+      // Add user to Firestore
+      await setDoc(doc(db, "users", userId), userData);
+
+      // add user to Supabase
       const { error } = await supabase
         .from("users")
         .insert([{ id: response.user.uid, name, email, phone, profile_url: profileUrl }]);
@@ -97,6 +106,9 @@ export const AuthContextProvider = ({ children }) => {
         console.log("error: ", error);
         return {success: false, msg: error.message};
       }
+
+      // Update local user state
+      setUser({ ...response.user, ...userData });
 
       return {success: true, data: response.user};
     } catch (error) {
