@@ -48,6 +48,13 @@ export default function CreateEvent() {
             return;
         }
 
+        const today = new Date();
+        let status = 'Belum Berlangsung';
+        if (eventDate) {
+            const isToday = eventDate.toDateString() === today.toDateString();
+            status = isToday ? 'Sedang Berlangsung' : 'Belum Berlangsung';
+        }
+
         try {
             const { data, error } = await supabase
                 .from('events')
@@ -57,7 +64,7 @@ export default function CreateEvent() {
                     name: eventName,
                     place: eventLocation,
                     event_date: eventDate,
-                    status: 'Belum Berlangsung'
+                    status: status,
                 }]);
 
             if (error) {
