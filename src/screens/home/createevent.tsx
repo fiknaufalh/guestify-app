@@ -29,7 +29,7 @@ export default function CreateEvent() {
     const [errors, setErrors] = useState<Errors>({});
 
     const { user } = useAuth();
-    const userId = user.userId;
+    const userId = user?.userId;
 
     // Function to generate random event code
     const generateEventCode = () => {

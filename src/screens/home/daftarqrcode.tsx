@@ -9,7 +9,7 @@ import { formatDistanceToNow } from 'date-fns';
 export default function DaftarQR() {
     const [events, setEvents] = useState<any[]>([]);
     const { user } = useAuth();
-    const userId = user.userId;
+    const userId = user?.userId;
 
     useEffect(() => {
         const fetchData = async () => {

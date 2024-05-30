@@ -39,17 +39,17 @@ export default function ProfileScreen() {
                 <View className="px-5 mt-5">
                     <View className="mb-5">
                         <Text className="text-primary-1 text-lg font-nun_bold mb-2">Nama:</Text>
-                        <Text className="bg-gray-200 px-4 py-3 rounded-lg font-nun_regular">{user.name}</Text>
+                        <Text className="bg-gray-200 px-4 py-3 rounded-lg font-nun_regular">{user?.name}</Text>
                     </View>
 
                     <View className="mb-5">
                         <Text className="text-primary-1 text-lg font-nun_bold mb-2">Email:</Text>
-                        <Text className="bg-gray-200 px-4 py-3 rounded-lg font-nun_regular">{user.email}</Text>
+                        <Text className="bg-gray-200 px-4 py-3 rounded-lg font-nun_regular">{user?.email}</Text>
                     </View>
 
                     <View>
                         <Text className="text-primary-1 text-lg font-nun_bold mb-2">Phone:</Text>
-                        <Text className="bg-gray-200 px-4 py-3 rounded-lg font-nun_regular">{user.phone}</Text>
+                        <Text className="bg-gray-200 px-4 py-3 rounded-lg font-nun_regular">{user?.phone}</Text>
                     </View>
 
                     <TouchableOpacity onPress={handleEditProfile}>

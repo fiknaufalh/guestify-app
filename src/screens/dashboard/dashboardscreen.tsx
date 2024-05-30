@@ -24,7 +24,7 @@ type Event = {
 export default function DashboardScreen() {
     const [events, setEvents] = useState<Event[]>([]);
     const { user } = useAuth();
-    const userId = user.userId;
+    const userId = user?.userId;
 
     useEffect(() => {
         const fetchData = async () => {
