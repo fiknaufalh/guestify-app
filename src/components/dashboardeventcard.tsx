@@ -12,9 +12,10 @@ interface EventCardProps {
     place: string,
     event_date: Date,
     status: string,
+    event_code: string,
 }
 
-export default function DashboardEventCard({ id, type, name, place, event_date, status }: EventCardProps) {
+export default function DashboardEventCard({ id, type, name, place, event_date, status, event_code }: EventCardProps) {
     const navigation = useNavigation<DashboardNavigation>();
 
     const handlePress = () => {
@@ -32,6 +33,7 @@ export default function DashboardEventCard({ id, type, name, place, event_date, 
             <Text className='text-secondary-2 font-nun_semibold text-md mb-2'>{name}</Text>
             <Text className='text-white font-nun_regular text-xs mb-2' style={{ textAlign: 'center' }}>{place}</Text>
             <Text className='text-white font-nun_regular text-xs mb-4'>{convertDate(event_date)}</Text>
+            <Text className='text-white font-nun_regular text-md mb-4'>Kode Acara: {event_code}</Text>
             <View className='bg-secondary-2 rounded-full p-3'>
                 <Text className='font-nun_semibold text-xs text-white'>{status}</Text>
             </View>

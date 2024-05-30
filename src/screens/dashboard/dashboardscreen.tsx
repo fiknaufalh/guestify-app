@@ -18,6 +18,7 @@ type Event = {
     event_date: Date,
     price: number,
     status: string,
+    event_code: string,
 }
 
 export default function DashboardScreen() {
@@ -83,6 +84,7 @@ export default function DashboardScreen() {
                             place={event.place}
                             event_date={event.event_date}
                             status={event.status}
+                            event_code={event.event_code}
                         />
                     </View>
                 ))}
