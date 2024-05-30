@@ -3,18 +3,19 @@ import React from "react";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation hook
 import { COLORS } from "@/constants/theme";
+import { type HomeNavigation } from '@/app/(tabs)/home';
 
 const HomeBanner = () => {
-  const navigation = useNavigation(); // Initialize navigation
+  const { navigate } = useNavigation<HomeNavigation>();
 
   const handleDaftarQRPress = () => {
     // Navigate to DaftarQR screen when "Daftar QR Code" button is pressed
-    navigation.navigate('DaftarQR');
+    navigate('DaftarQR');
   };
 
   const handleCreateEventPress = () => {
     // Navigate to CreateEvent screen when "Buat Acara" button is pressed
-    navigation.navigate('CreateEvent');
+    navigate('CreateEvent');
   };
   return (
     <View className="bg-primary-2 w-screen flex-1 items-center pb-8 rounded-b-3xl">
