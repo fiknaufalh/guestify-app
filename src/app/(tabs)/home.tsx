@@ -7,10 +7,22 @@ import QRCode from "@/screens/home/qrcode";
 import CreateEvent from "@/screens/home/createevent";
 import Payment from "@/screens/home/payment";
 import PaymentCompleted from "@/screens/home/paymentcompleted";
+import QRCodeScreen from "@/screens/home/qrcode";
 
-export type HomeScreenNames =
-  ["HomeScreen", "DaftarQR", "QRCode", "CreateEvent", "Payment", "PaymentCompleted", "EditEvent"];
-export type HomeStackParamList = Record<HomeScreenNames[number], undefined>;
+// export type HomeScreenNames =
+//   ["HomeScreen", "DaftarQR", "QRCode", "CreateEvent", "Payment", "PaymentCompleted", "EditEvent"];
+// export type HomeStackParamList = Record<HomeScreenNames[number], undefined>;
+
+export type HomeStackParamList = {
+  HomeScreen: undefined;
+  DaftarQR: undefined;
+  QRCodeScreen: { qrCodeString: string };
+  CreateEvent: undefined;
+  Payment: undefined;
+  PaymentCompleted: undefined;
+  EditEvent: undefined;
+};
+
 export type HomeNavigation = NavigationProp<HomeStackParamList>;
 
 const Stack = createStackNavigator<HomeStackParamList>();
@@ -29,8 +41,8 @@ const Home = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="QRCode"
-        component={QRCode}
+        name="QRCodeScreen"
+        component={QRCodeScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
