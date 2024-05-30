@@ -131,13 +131,13 @@ const GuestTable = ({ data }) => {
                                 <Text className="w-40 p-4 font-nun_regular items-center">{guest.guestName}</Text>
                                 <Text className="w-40 p-4 font-nun_regular items-center">{guest.phoneNumber}</Text>
                                 <View className='w-40 justify-center items-center'>
-                                    <GuestTableChip value={guest.checkIn} />
+                                    <GuestTableChip value={guest.scanStatus} />
                                 </View>
                                 <View className='w-40 justify-center items-center'>
-                                    <GuestTableChip value={guest.gift} />
+                                    <GuestTableChip value={guest.giftStatus} />
                                 </View>
                                 <View className='w-40 justify-center items-center'>
-                                    <GuestTableChip value={guest.souvenir} />
+                                    <GuestTableChip value={guest.souvenirStatus} />
                                 </View>
                                 <Text className="w-40 p-4 font-nun_regular items-center">{guest.totalGuests}</Text>
                             </View>

@@ -86,6 +86,9 @@ function GuestBook({ navigation, route }: GuestBookProps) {
         navigation.navigate('GuestBookDetail', { eventId });
     };
 
+    console.log('Total Guests:', totalGuests);
+    console.log('Total Check-Ins:', totalCheckIns);
+
     return (
         <ScrollView className='bg-white' contentContainerStyle={{ paddingBottom: 200 }}>
             <View className="bg-white flex-1 h-full">
