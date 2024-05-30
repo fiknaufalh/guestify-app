@@ -1,5 +1,5 @@
 import "../global.css";
-import { Slot, SplashScreen, useRouter, useSegments } from "expo-router";
+import { Slot, SplashScreen, useRouter, useSegments, useRootNavigationState } from "expo-router";
 import React, { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { AuthContextProvider, useAuth } from "@/contexts/authContext";
@@ -55,20 +55,27 @@ const MainLayout = () => {
     "JosefinSans-ThinItalic": require("../assets/fonts/JosefinSans/JosefinSans-ThinItalic.ttf"),
   });
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const segments = useSegments();
   const router = useRouter();
+  const navigationState = useRootNavigationState();
 
   useEffect(() => {
+    if (!navigationState?.key) return;
     if (typeof isLoggedIn === "undefined") return;
     const inApp = segments[0] == "(tabs)";
-    if (isLoggedIn && !inApp) {
-      // redirect to home
-      router.replace("home");
-    } else if (!isLoggedIn) {
-      // redirect to login
-      router.replace("login");
-    }
+    console.log("user: ", user, ", isLoggedIn: ", isLoggedIn, ", inApp: ", inApp);
+
+    // setTimeout(() => {
+      if (isLoggedIn && !inApp) {
+        // redirect to home
+        router.replace("home");
+      } else if (!isLoggedIn) {
+        // redirect to login
+        router.replace("login");
+      }
+    // }, 1000);
+  
   }, [isLoggedIn]);
 
   useEffect(() => {

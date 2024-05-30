@@ -1,5 +1,7 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import React from 'react'
+import { useRouter, useRootNavigationState, Redirect } from 'expo-router';
 import { useAuth } from '@/contexts/authContext';
 
 const profilePic = require('../assets/profpic.jpeg');
@@ -8,11 +10,12 @@ const appIcon = require('../assets/icon.png');
 export default function ProfileScreen() {
 
     const { logout, user } = useAuth() 
+    const router = useRouter();
 
     const handleLogout = async () => {
         console.log("logout")
         console.log("user: ", user)
-        await logout()
+        const { success } = await logout()
     }
 
     // Debug

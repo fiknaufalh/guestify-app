@@ -1,5 +1,6 @@
 import AppIntroSlider from "react-native-app-intro-slider";
 import { View, Text, Image } from "react-native";
+import { router } from "expo-router";
 import { COLORS, SIZES } from "../constants/theme";
 import React from "react";
 
@@ -70,6 +71,7 @@ export default function IntroSlider({ setShowHomePage }: IntroSlideProps) {
       renderDoneButton={() => buttonLabel("Done")}
       onDone={() => {
         setShowHomePage(true);
+        router.replace("login");
       }}
     />
   );

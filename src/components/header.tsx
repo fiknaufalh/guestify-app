@@ -2,8 +2,11 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import { COLORS } from "@/constants/theme";
+import { useAuth } from "@/contexts/authContext";
 
 const Header = () => {
+  const { user } = useAuth();
+
   return (
     <View className="bg-primary-2 w-screen">
       <View className="flex flex-row justify-between" style={{ marginTop: 10 }}>

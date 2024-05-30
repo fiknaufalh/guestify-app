@@ -24,26 +24,6 @@ export default function DashboardScreen() {
     const { user } = useAuth();
     const userId = user.userId;
 
-    // useEffect(() => {
-    //     const eventsCollection = collection(db, 'events');
-    //     const eventsQuery = query(eventsCollection, where('organizer_id', '==', userId));
-        
-    //     const unsubscribe = onSnapshot(eventsQuery, (snapshot) => {
-    //         const eventsData = snapshot.docs.map(doc => {
-    //             const data = doc.data() as Omit<Event, 'event_date'> & { event_date: Timestamp };
-    //             return {
-    //                 ...data,
-    //                 event_date: data.event_date.toDate(),
-    //             } as Event;
-    //         });
-    //         setEvents(eventsData);
-    //     });
-
-    //     // Cleanup subscription on unmount
-    //     return () => unsubscribe();
-    // }, [userId]);
-    // console.log(events);
-
     useEffect(() => {
         const fetchData = async () => {
             const { data, error } = await supabase

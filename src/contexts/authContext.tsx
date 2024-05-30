@@ -47,7 +47,7 @@ export const AuthContextProvider = ({ children }) => {
     const docRef = doc(db, "users", userId);
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists) {
+    if (docSnap.exists()) {
       const data = docSnap.data();
       setUser({...user, name: data.name, phone: data.phone, profileUrl: data.profileUrl, userId: data.userId })
     }
