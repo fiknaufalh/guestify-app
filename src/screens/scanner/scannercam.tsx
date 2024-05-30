@@ -4,6 +4,8 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { type ScannerNavigation } from '@/app/(tabs)/scanner';
+import { supabase } from '@/database/supabaseConfig';
+import { Alert } from 'react-native';
 
 const appIcon = require('@/assets/icon.png');
 
@@ -22,11 +24,33 @@ const ScannerCamera = () => {
     }, [permission]);
 
     // What happens when we scan the bar code
-    const handleBarCodeScanned = ({ type, data }) => {
+    const handleBarCodeScanned = async ({ type, data }) => {
         setScanned(true);
-        setText(data);
+        setText(data); // Update nilai text dengan nilai data yang baru saja dipindai
         console.log('Type: ' + type + '\nData: ' + data);
+        // Cek kode undangan pada tabel guests
+        const { data: guests, error } = await supabase
+            .from('guests')
+            .select('event_id, id')
+            .eq('qr_code', data) // Gunakan nilai data yang baru saja dipindai
+            .single();
+
+        if (error) {
+            console.error('Error fetching guest data:', error.message);
+            Alert.alert('Error', 'Terjadi kesalahan saat memeriksa kode undangan.');
+            return;
+        }
+
+        if (!guests) {
+            Alert.alert('Peringatan', 'Kode undangan tidak terdaftar.');
+            return;
+        }
+
+        console.log('Guests:', guests);
+        // Kode undangan valid, lanjutkan ke FormCheckIn dengan event_id
+        navigate('FormCheckIn', { eventId: guests.event_id, guestId: guests.id });
     };
+
 
     // Handle manual button press
     const handleManualTypingPress = () => {
@@ -74,7 +98,7 @@ const ScannerCamera = () => {
                 {/* Text result */}
                 {/* <Text className="text-lg mt-5">{text}</Text> */}
 
-                {scanned && <Button title={'Scan Ulang?'} onPress={() => setScanned(false)} color='#601C0E' />}
+                {scanned && <View className='my-2'><Button title={'Scan Ulang?'} onPress={() => setScanned(false)} color='#601C0E' /></View>}
 
                 {/* Button Manual */}
                 <Text className="text-md font-nun_light my-3">Atau</Text>

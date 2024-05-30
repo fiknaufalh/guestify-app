@@ -67,15 +67,15 @@ const MainLayout = () => {
     console.log("user: ", user, ", isLoggedIn: ", isLoggedIn, ", inApp: ", inApp);
 
     // setTimeout(() => {
-      if (isLoggedIn && !inApp) {
-        // redirect to home
-        router.replace("home");
-      } else if (!isLoggedIn) {
-        // redirect to login
-        router.replace("login");
-      }
+    if (isLoggedIn && !inApp) {
+      // redirect to home
+      router.replace("home");
+    } else if (!isLoggedIn) {
+      // redirect to login
+      router.replace("login");
+    }
     // }, 1000);
-  
+
   }, [isLoggedIn]);
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button, Image, TouchableOpacity, StyleSheet, Ale
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { type ScannerNavigation } from '@/app/(tabs)/scanner';
+import { supabase } from '@/database/supabaseConfig';
 
 const appIcon = require('@/assets/icon.png');
 
@@ -10,14 +11,25 @@ const FormKetikManual = () => {
     const [textInputValue, setTextInputValue] = useState('');
     const { navigate } = useNavigation<ScannerNavigation>();
 
-    const handleLanjutkanPress = () => {
+    const handleLanjutkanPress = async () => {
         if (textInputValue.trim() === '') {
             // Alert jika teks kosong
             Alert.alert('Peringatan', 'Mohon masukkan kode undangan terlebih dahulu.');
         } else {
-            // // Alert menampilkan teks yang dimasukkan
-            // Alert.alert('Teks yang Dimasukkan', textInputValue);             //logic cek kode manual nanti disini
-            navigate('FormCheckIn');
+            // Cek kode undangan pada tabel guests
+            const { data: guests, error } = await supabase
+                .from('guests')
+                .select('event_id, id')
+                .eq('qr_code', textInputValue.trim())
+                .single();
+
+            if (!guests) {
+                Alert.alert('Peringatan', 'Kode undangan tidak terdaftar.');
+                return;
+            }
+
+            // Kode undangan valid, lanjutkan ke FormCheckIn dengan event_id
+            navigate('FormCheckIn', { eventId: guests.event_id, guestId: guests.id });
         }
     }
 

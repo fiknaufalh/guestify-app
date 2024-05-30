@@ -7,7 +7,12 @@ import FormCheckIn from "@/screens/scanner/formcheckin";
 import ScannerLast from "@/screens/scanner/scannerlast";
 
 export type ScannerScreenNames = ["Scanner", "FormKetikManual", "FormCheckIn", "ScannerLast"];
-export type ScannerStackParamList = Record<ScannerScreenNames[number], undefined>;
+export type ScannerStackParamList = {
+  Scanner: undefined;
+  FormCheckIn: { eventId: number, guestId: number };
+  FormKetikManual: undefined;
+  ScannerLast: undefined;
+}
 export type ScannerNavigation = NavigationProp<ScannerStackParamList>;
 
 const Stack = createStackNavigator();
