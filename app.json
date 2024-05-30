@@ -36,6 +36,14 @@
     "slug": "guestify-app",
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": "https://n"
+      },
+      "eas": {
+        "projectId": "f874a36e-71d6-4415-a633-33cf144ed68b"
+      }
     }
   }
 }
