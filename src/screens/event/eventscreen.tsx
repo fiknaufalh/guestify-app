@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import { type EventNavigation } from '@/app/(tabs)/event'
 import { useState } from 'react'
 import { useAuth } from '@/contexts/authContext'
+import { supabase } from '@/database/supabaseConfig';
 
 export default function EventScreen() {
     const [textInputValue, setTextInputValue] = useState('');
@@ -12,19 +13,28 @@ export default function EventScreen() {
     const { user } = useAuth();
     const firstName = user?.name?.split(" ")[0] || "User";
 
-    const handleLanjutkanPress = () => {
+    const handleLanjutkanPress = async () => {
         if (textInputValue.trim() === '') {
             // Alert jika teks kosong
             Alert.alert('Peringatan', 'Mohon masukkan kode undangan terlebih dahulu.');
-        } else {
-            // // Alert menampilkan teks yang dimasukkan
-            // Alert.alert('Teks yang Dimasukkan', textInputValue);             //logic cek kode manual nanti disini
-            navigate('RSVPScreen');
-        }
-    }
+            return;
+        } 
 
-    const handleTextInputChange = (text) => {
-        setTextInputValue(text);
+        console.log('Kode undangan:', textInputValue)
+
+        // Ambil data acara berdasarkan kode undangan
+        const { data, error } = await supabase
+            .from('events') // Sesuaikan dengan nama tabel acara Anda di Supabase
+            .select('*')
+            .eq('event_code', textInputValue) // Sesuaikan dengan kolom kode undangan Anda di Supabase
+            .single();
+
+        if (error || !data) {
+            Alert.alert('Error', 'Kode undangan tidak valid atau acara tidak ditemukan.');
+            return;
+        }
+
+        navigate('RSVPScreen', { event: data });
     }
 
     return (
@@ -53,7 +63,7 @@ export default function EventScreen() {
                     textAlign="left"
                     style={styles.input}
                     placeholderTextColor="gray"
-                    onChangeText={handleTextInputChange} // Handle text input change
+                    onChangeText={setTextInputValue} // Handle text input change
                     value={textInputValue}
                     className='font-nun_light'
                 />

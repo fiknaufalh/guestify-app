@@ -6,8 +6,12 @@ import RSVPScreen from "@/screens/event/rsvpscreen";
 import RSVPHadir from "@/screens/event/rsvphadir";
 import RSVPTidakHadir from "@/screens/event/rsvptidakhadir";
 
-export type EventScreenNames = ["EventScreen", "RSVPScreen", "RSVPHadir", "RSVPTidakHadir"];
-export type EventStackParamList = Record<EventScreenNames[number], undefined>;
+export type EventStackParamList = {
+  EventScreen: undefined;
+  RSVPScreen: { event: any }; // Perbarui tipe parameter untuk RSVPScreen
+  RSVPHadir: undefined;
+  RSVPTidakHadir: undefined;
+};
 export type EventNavigation = NavigationProp<EventStackParamList>;
 
 const Stack = createStackNavigator<EventStackParamList>()

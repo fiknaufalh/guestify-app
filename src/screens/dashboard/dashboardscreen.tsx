@@ -58,8 +58,6 @@ export default function DashboardScreen() {
             )
             .subscribe();
 
-        console.log("HAI")
-
         // Cleanup subscription on unmount
         return () => {
             supabase.removeChannel(subscription);
