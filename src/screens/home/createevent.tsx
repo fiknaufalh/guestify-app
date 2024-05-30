@@ -1,10 +1,11 @@
-import { View, Text, TextInput, TouchableOpacity, Alert, Platform } from 'react-native';
 import React, { useState } from 'react';
-import { ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Platform, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { type HomeNavigation } from '@/app/(tabs)/home';
 import { MaterialIcons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { supabase } from '@/database/supabaseConfig';
+import { useAuth } from '@/contexts/authContext';
 
 interface Errors {
     eventType?: string;
@@ -13,6 +14,7 @@ interface Errors {
     eventLocation?: string;
     eventDate?: string;
     totalGuests?: string;
+    price?: string;
 }
 
 export default function CreateEvent() {
@@ -26,7 +28,26 @@ export default function CreateEvent() {
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [errors, setErrors] = useState<Errors>({});
 
-    const handleLanjutkanPress = () => {
+    const { user } = useAuth();
+    const userId = user.userId;
+
+    // Function to generate random event code
+    const generateEventCode = () => {
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const numbers = '0123456789';
+        let code = '';
+
+        for (let i = 0; i < 4; i++) {
+            code += letters[Math.floor(Math.random() * letters.length)];
+        }
+        for (let i = 0; i < 4; i++) {
+            code += numbers[Math.floor(Math.random() * numbers.length)];
+        }
+
+        return code;
+    };
+
+    const handleLanjutkanPress = async () => {
         let newErrors: Errors = {};
         if (!eventType) newErrors.eventType = 'Tipe Acara harus diisi';
         if (!ownerName) newErrors.ownerName = 'Nama Pemilik Acara harus diisi';
@@ -42,8 +63,38 @@ export default function CreateEvent() {
             return;
         }
 
-        // Add your form submission logic here
-        navigate('Payment');
+        const today = new Date();
+        let status = 'Belum Berlangsung';
+        if (eventDate) {
+            const isToday = eventDate.toDateString() === today.toDateString();
+            status = isToday ? 'Sedang Berlangsung' : 'Belum Berlangsung';
+        }
+
+        const eventCode = generateEventCode();
+
+        try {
+            const { data, error } = await supabase
+                .from('events')
+                .insert([{
+                    organizer_id: userId,
+                    type: eventType,
+                    name: eventName,
+                    place: eventLocation,
+                    event_date: eventDate,
+                    status: status,
+                    event_code: eventCode,
+                }]);
+
+            if (error) {
+                Alert.alert("Error", "There was an error creating the event");
+                console.error("Error inserting event:", error);
+            } else {
+                Alert.alert("Success", "Event created successfully");
+                navigate('Payment');
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
     };
 
     return (

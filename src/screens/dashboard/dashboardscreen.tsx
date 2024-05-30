@@ -10,6 +10,7 @@ import { useAuth } from '@/contexts/authContext';
 const appIcon = require('../../assets/icon.png');
 
 type Event = {
+    id: number,
     organizer_id: string,
     type: string,
     name: string,
@@ -17,6 +18,7 @@ type Event = {
     event_date: Date,
     price: number,
     status: string,
+    event_code: string,
 }
 
 export default function DashboardScreen() {
@@ -48,8 +50,8 @@ export default function DashboardScreen() {
         const subscription = supabase
             .channel("event-changes")
             .on(
-                'postgres_changes', 
-                { 
+                'postgres_changes',
+                {
                     event: "*",
                     schema: "public",
                     table: "events",
@@ -74,11 +76,13 @@ export default function DashboardScreen() {
                 {events.map((event, index) => (
                     <View key={index} style={{ width: '100%', alignItems: 'center' }}>
                         <DashboardEventCard
+                            id={event.id}
                             type={event.type}
                             name={event.name}
                             place={event.place}
                             event_date={event.event_date}
                             status={event.status}
+                            event_code={event.event_code}
                         />
                     </View>
                 ))}

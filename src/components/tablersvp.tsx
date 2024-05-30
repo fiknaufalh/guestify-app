@@ -49,7 +49,7 @@ const TableRSVP = ({ data }) => {
         currentPage * recordsPerPage
     );
 
-    console.log(displayedData)
+    // console.log(displayedData)
 
     const startNumber = filteredData.length > 0 ? (currentPage - 1) * recordsPerPage + 1 : 0;
     const endNumber = currentPage * recordsPerPage <= filteredData.length ? currentPage * recordsPerPage : filteredData.length;
