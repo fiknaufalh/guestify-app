@@ -73,19 +73,25 @@ export default function DashboardScreen() {
                 <Text className='mb-5 font-nun_bold text-white text-lg'>Daftar Acara Anda</Text>
             </View>
             <View className='justify-center items-center p-4'>
-                {events.map((event, index) => (
-                    <View key={index} style={{ width: '100%', alignItems: 'center' }}>
-                        <DashboardEventCard
-                            id={event.id}
-                            type={event.type}
-                            name={event.name}
-                            place={event.place}
-                            event_date={event.event_date}
-                            status={event.status}
-                            event_code={event.event_code}
-                        />
+            {events.length === 0 ? (
+                    <View className='flex-1 justify-center items-center mt-36'>
+                        <Text className='text-primary-2 font-nun_bold text-lg mt-20'>Tidak ada acara yang tersedia.</Text>
                     </View>
-                ))}
+                ) : (
+                    events.map((event, index) => (
+                        <View key={index} style={{ width: '100%', alignItems: 'center' }}>
+                            <DashboardEventCard
+                                id={event.id}
+                                type={event.type}
+                                name={event.name}
+                                place={event.place}
+                                event_date={event.event_date}
+                                status={event.status}
+                                event_code={event.event_code}
+                            />
+                        </View>
+                    ))
+                )}
             </View>
         </ScrollView>
     )
