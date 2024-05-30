@@ -1,11 +1,12 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { View, Text } from 'react-native';
+import React from 'react';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import { EventNavigation } from '@/app/(tabs)/dashboard';
+import { DashboardNavigation } from '@/app/(tabs)/dashboard';
 import { convertDate } from '@/utils/dateConverter';
 
 interface EventCardProps {
+    id: number,
     type: string,
     name: string,
     place: string,
@@ -13,11 +14,12 @@ interface EventCardProps {
     status: string,
 }
 
-export default function DashboardEventCard({ type, name, place, event_date, status }: EventCardProps) {
-    const navigation = useNavigation<EventNavigation>();
+export default function DashboardEventCard({ id, type, name, place, event_date, status }: EventCardProps) {
+    const navigation = useNavigation<DashboardNavigation>();
 
     const handlePress = () => {
-        navigation.navigate('DashboardScreenEvent');
+        navigation.navigate('DashboardScreenEvent', { eventId: id });
+        console.log(id)
     };
 
     return (
@@ -34,5 +36,5 @@ export default function DashboardEventCard({ type, name, place, event_date, stat
                 <Text className='font-nun_semibold text-xs text-white'>{status}</Text>
             </View>
         </TouchableOpacity>
-    )
+    );
 }

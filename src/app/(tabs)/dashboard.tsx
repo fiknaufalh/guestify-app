@@ -4,11 +4,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import DashboardScreen from "@/screens/dashboard/dashboardscreen";
 import DashboardScreenEvent from "@/screens/dashboard/dashboardscreenevent";
 
-export type EventScreenNames = ["DashboardScreen", "DashboardScreenEvent"];
-export type EventStackParamList = Record<EventScreenNames[number], undefined>;
-export type EventNavigation = NavigationProp<EventStackParamList>;
+export type DashboardScreenNames = ["DashboardScreen", "DashboardScreenEvent"];
+export type DashboardStackParamList = {
+  DashboardScreen: undefined;
+  DashboardScreenEvent: { eventId: number };
+};
+export type DashboardNavigation = NavigationProp<DashboardStackParamList>;
 
-const Stack = createStackNavigator<EventStackParamList>()
+const Stack = createStackNavigator<DashboardStackParamList>()
 
 const Dashboard = () => {
   return (
