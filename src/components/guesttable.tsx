@@ -139,7 +139,7 @@ const GuestTable = ({ data }) => {
                                 <View className='w-40 justify-center items-center'>
                                     <GuestTableChip value={guest.souvenir} />
                                 </View>
-                                <Text className="w-40 p-4 font-nun_regular items-center">{guest.totalGuest}</Text>
+                                <Text className="w-40 p-4 font-nun_regular items-center">{guest.totalGuests}</Text>
                             </View>
                         ))}
                     </View>

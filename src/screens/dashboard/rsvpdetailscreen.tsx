@@ -10,18 +10,18 @@ export default function RSVPDetailScreen({ route }) {
     // console.log('Event ID sekarang:', eventId);
     useEffect(() => {
         const fetchRSVPData = async () => {
-            const { data, error } = await supabase
+            const { data: rsvpData, error: rsvpError } = await supabase
                 .from('rsvp')
                 .select('id, guest_id, status')
                 .eq('event_id', eventId);
 
-            if (error) {
-                console.error('Error fetching RSVP data:', error);
+            if (rsvpError) {
+                console.error('Error fetching RSVP data:', rsvpError);
                 return;
             }
 
-            const guestIds = data.map(rsvp => rsvp.guest_id);
-            const { data: guests, error: guestError } = await supabase
+            const guestIds = rsvpData.map(rsvp => rsvp.guest_id);
+            const { data: guestsData, error: guestError } = await supabase
                 .from('guests')
                 .select('id, details')
                 .in('id', guestIds);
@@ -31,13 +31,25 @@ export default function RSVPDetailScreen({ route }) {
                 return;
             }
 
-            const combinedData = data.map(rsvp => {
-                const guest = guests.find(g => g.id === rsvp.guest_id);
+            const userIds = guestsData.map(guest => guest.id);
+            const { data: usersData, error: userError } = await supabase
+                .from('users')
+                .select('id, name, phone')
+                .in('id', userIds);
+
+            if (userError) {
+                console.error('Error fetching user data:', userError);
+                return;
+            }
+
+            const combinedData = rsvpData.map(rsvp => {
+                const guest = guestsData.find(g => g.id === rsvp.guest_id);
+                const user = usersData.find(u => u.id === guest.id);
                 return {
                     id: rsvp.id,
-                    guestName: guest ? guest.details : 'Unknown Guest',
-                    phoneNumber: guest ? guest.details : 'Unknown',
-                    details: guest ? guest.details : 'No details',
+                    guestName: user ? user.name : 'Unknown Guest',
+                    phoneNumber: user ? user.phone : 'Unknown',
+                    details: guest.details,
                     rsvpStatus: rsvp.status,
                 };
             });
@@ -48,6 +60,7 @@ export default function RSVPDetailScreen({ route }) {
         fetchRSVPData();
     }, [eventId]);
 
+    console.log('RSVP Data:', rsvpData);
     return (
         <ScrollView className='bg-white' contentContainerStyle={{ paddingBottom: 150 }}>
             <TableRSVP data={rsvpData} />
