@@ -4,10 +4,13 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { type EventNavigation } from '@/app/(tabs)/event'
 import { useState } from 'react'
+import { useAuth } from '@/contexts/authContext'
 
 export default function EventScreen() {
     const [textInputValue, setTextInputValue] = useState('');
     const { navigate } = useNavigation<EventNavigation>();
+    const { user } = useAuth();
+    const firstName = user?.name?.split(" ")[0] || "User";
 
     const handleLanjutkanPress = () => {
         if (textInputValue.trim() === '') {
@@ -28,7 +31,7 @@ export default function EventScreen() {
         <View className="bg-white h-full">
             <View className="pt-8 bg-primary-2 items-center p-3" style={{ borderBottomRightRadius: 30, borderBottomLeftRadius: 30 }}>
                 <Text className="text-white text-xl font-nun_semibold self-start mx-4 mt-10">
-                    👋 Halo, Bob!
+                    👋 Halo, {firstName}!
                 </Text>
                 <Text className="text-white text-md font-nun_light self-start mx-4 mt-5">
                     Ada undangan ke acara mana nih...

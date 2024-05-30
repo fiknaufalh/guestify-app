@@ -6,6 +6,7 @@ import { useAuth } from "@/contexts/authContext";
 
 const Header = () => {
   const { user } = useAuth();
+  const firstName = user?.name?.split(" ")[0] || "User";
 
   return (
     <View className="bg-primary-2 w-screen">
@@ -27,7 +28,7 @@ const Header = () => {
         </View>
       </View>
       <Text className="text-white font-nun_semibold text-xl" style={{ marginStart: 20 }}>
-        👋 Halo, Bob!
+        👋 Halo, {firstName}!
       </Text>
     </View>
   );
